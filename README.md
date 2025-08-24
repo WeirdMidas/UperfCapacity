@@ -2,6 +2,10 @@
 
 一个Android用户态性能控制器，实现大部分内核态升频功能，并支持更多情景识别。
 
+Uperf will now take full advantage of the new scheduler integrated into recent Android devices (starting in 2020) that replaced the mainstream: EAS (Energy-Aware Scheduling), a scheduler that focuses on energy efficiency rather than raw performance, abandoning very old solutions like CFS (Completely Fair Scheduler) and even HMP (Heterogeneous Multi-Processing). But that's not all; trackers like WALT (Window-Assisted Load Tracking) and PELT (Per-Entity Load Tracking) have also been integrated, allowing load tracking to be as stable or fast as possible, depending on the device's current usage. Managing the tasks of each scheduler and tracker has become complicated, forcing many users to specialize in each scheduler to know when and where to optimize to reduce energy consumption without penalty in terms of performance or latency losses. This causes information loss and obfuscation, making optimization difficult for users who would like to do so. This even affected schedutil, reducing test accuracy because schedutil generally works differently on each scheduler.
+
+However, the excessive heuristics embedded in current schedulers ultimately compromised EAS's core strength: its adaptability and dynamism. Based on this, Uperf has now been integrated as a solution to allow EAS (and even HMP to a certain extent) to be dynamic again without so many heuristics getting in the way. Based on this, following Matt Yang's old design and improving it to current standards, Uperf now integrates better with EAS and primarily aims to be an efficient solution, not energy- or performance-conscious, but balanced. Allowing EAS, in turn, to have full control over the Android system and its peculiarities, allowing EAS to be more efficient, faster and consistent, allowing better UI performance and, in turn, better overall energy efficiency by eliminating unnecessary heuristics and allowing Uperf to fully integrate with EAS.
+
 ## 主要功能
 
 - 根据识别的场景类型，动态设定参数控制性能释放，支持所有`sysfs`节点

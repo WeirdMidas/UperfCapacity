@@ -12,8 +12,6 @@ For this reason, rather than following the proposals of other projects, Uperf Aw
 
 With this approach, Uperf Aware aims to be a "ultimate" custom scheduler that can be integrated into various devices without the need to recompile the kernel. This allows a wider range of users to test and benefit from this optimization.
 
-Your project is incredibly solid and this description represents it very well.
-
 ## 主要功能
 
 - 根据识别的场景类型，动态设定参数控制性能释放，支持所有`sysfs`节点

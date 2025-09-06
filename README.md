@@ -2,9 +2,17 @@
 
 一个Android用户态性能控制器，实现大部分内核态升频功能，并支持更多情景识别。
 
-Uperf will now take full advantage of the new scheduler integrated into recent Android devices (starting in 2020) that replaced the mainstream: EAS (Energy-Aware Scheduling), a scheduler that focuses on energy efficiency rather than raw performance, abandoning very old solutions like CFS (Completely Fair Scheduler) and even HMP (Heterogeneous Multi-Processing). But that's not all; trackers like WALT (Window-Assisted Load Tracking) and PELT (Per-Entity Load Tracking) have also been integrated, allowing load tracking to be as stable or fast as possible, depending on the device's current usage. Managing the tasks of each scheduler and tracker has become complicated, forcing many users to specialize in each scheduler to know when and where to optimize to reduce energy consumption without penalty in terms of performance or latency losses. This causes information loss and obfuscation, making optimization difficult for users who would like to do so. This even affected schedutil, reducing test accuracy because schedutil generally works differently on each scheduler.
+Uperf now takes full advantage of the new era of task schedulers integrated into recent Android devices (as of 2020). They replaced the old mainstream approach, EAS (Energy-Aware Scheduling), which prioritized energy efficiency over raw performance, abandoning older solutions like CFS (Completely Fair Scheduler) and HMP (Heterogeneous Multi-Processing). Additionally, load tracking technologies like WALT (Window-Assisted Load Tracking) and PELT (Per-Entity Load Tracking) were integrated, making load monitoring more accurate.
 
-However, the excessive heuristics embedded in current schedulers ultimately compromised EAS's core strength: its adaptability and dynamism. Based on this, Uperf has now been integrated as a solution to allow EAS (and even HMP to a certain extent) to be dynamic again without so many heuristics getting in the way. Based on this, following Matt Yang's old design and improving it to current standards, Uperf now integrates better with EAS and primarily aims to be an efficient solution, not energy- or performance-conscious, but balanced. Allowing EAS, in turn, to have full control over the Android system and its peculiarities, allowing EAS to be more efficient, faster and consistent, allowing better UI performance and, in turn, better overall energy efficiency by eliminating unnecessary heuristics and allowing Uperf to fully integrate with EAS.
+Managing the interaction between all these schedulers and trackers has become complicated. Many users need to specialize in each one to optimize the system without compromising performance or fluidity. This causes a loss of information and makes optimization inaccessible for many. This complexity has even affected schedutil, reducing test accuracy, as it behaves differently with each scheduler.
+
+To address this, a new scheduler was proposed: CASS (Capacity-Aware Superset Scheduler). CASS optimizes the CFS task queue by using CPU capacity to compare the relative load across different cores. This results in better multi-core performance, especially under high utilization, as CASS does not reduce CPU capacity when the CPU is overloaded. However, CASS has been shown to be inferior to EAS in terms of energy efficiency.
+
+For this reason, rather than following the proposals of other projects, Uperf Aware offers a different approach. Our goal is to be a custom scheduler that unifies the behavior of EAS and CASS. The goal is to deliver a level of single-core performance, cache locality, multi-core performance, and efficiency that neither scheduler could achieve alone.
+
+With this approach, Uperf Aware aims to be a "ultimate" custom scheduler that can be integrated into various devices without the need to recompile the kernel. This allows a wider range of users to test and benefit from this optimization.
+
+Your project is incredibly solid and this description represents it very well.
 
 ## 主要功能
 
@@ -511,6 +519,49 @@ UFS节能开关的`sysfs`节点路径为`/sys/devices/platform/soc/1d84000.ufshc
 ```
 
 更改配置文件后保存，Uperf会自动创建新的子进程加载新的配置文件，如果新的配置文件格式存在问题，会终止新的子进程保留老的子进程。接下来验证配置文件中设定动作是否能如期执行，对应路径的值是否发生更改。  
+
+# How to support the project and fortify it:
+
+If you want to support this version of uperf, please do the following:
+
+For SoCs that are not yet profiled in Uperf Aware:
+Make an issue titled "Support for [insert your processor here]" and then do the following:
+Q. Is your SoC a MediaTek, Snapdragon, or?
+A. Please provide the name of your processor/CPU. Also, the codename. To get it, you can use this command:
+```
+getprop ro.board.platform
+```
+
+Q. What is the frequency table for your SoC?
+A. Enter the frequency table/available frequencies for your SoC here. It is recommended to submit this table only if your kernel is not ultra-optimized, which would force changes to the frequency table.
+
+Q. What GPU do you have? Could you show me all the sysfs parameters for your GPU? If possible,
+A. Please provide the name of your GPU and, if possible, show me the parameters and their values.
+
+Q. If possible, please show me any parameters you consider special about your SOC.
+A. The more information you give me about your SOC, the better the optimizations will be. And you don't have to go to great lengths; I can get others on GitHub.
+
+Q. Could you give me an average cost and power consumption for each frequency of your CPU?
+A. Enter the costs and power consumption of each frequency of your processor here to allow me to create a better power model for your device.
+
+And if you already have a profile on Uperf Aware, you can help with this additional information:
+
+1. What is the power consumption of your SOC? Could you send it to me? I say this about consumption here below, for example:
+cluster0:
+17:14:32 I opp 691200 pwr 0.060 cost 0.086
+17:14:32 I opp 940800 pwr 0.081 cost 0.086
+17:14:32 I opp 1190400 pwr 0.122 cost 0.103
+17:14:32 I opp 1516800 pwr 0.215 cost 0.142
+17:14:32 I opp 1804800 pwr 0.363 cost 0.201
+17:14:32 I opp 1900800 pwr 0.424 cost 0.223
+17:14:32 I CpuGovernor cluster1:
+17:14:32 I opp 1056000 pwr 0.295 cost 0.164
+17:14:32 I opp 1344000 pwr 0.458 cost 0.200
+17:14:32 I opp 1766400 pwr 0.791 cost 0.263
+17:14:32 I opp 2208000 pwr 1.516 cost 0.404
+17:14:32 I opp 2400000 pwr 1.947 cost 0.477
+
+This is to help me build a more efficient powerModel for your SOC, to extract maximum performance and efficiency from it.
 
 ## 致谢
 

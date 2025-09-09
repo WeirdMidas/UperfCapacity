@@ -1,16 +1,8 @@
-# Uperf
+# Capacity-Userspace Superset Scheduler
 
 一个Android用户态性能控制器，实现大部分内核态升频功能，并支持更多情景识别。
 
-Uperf now takes full advantage of the new era of task schedulers integrated into recent Android devices (as of 2020). They replaced the old mainstream approach, EAS (Energy-Aware Scheduling), which prioritized energy efficiency over raw performance, abandoning older solutions like CFS (Completely Fair Scheduler) and HMP (Heterogeneous Multi-Processing). Additionally, load tracking technologies like WALT (Window-Assisted Load Tracking) and PELT (Per-Entity Load Tracking) were integrated, making load monitoring more accurate.
-
-Managing the interaction between all these schedulers and trackers has become complicated. Many users need to specialize in each one to optimize the system without compromising performance or fluidity. This causes a loss of information and makes optimization inaccessible for many. This complexity has even affected schedutil, reducing test accuracy, as it behaves differently with each scheduler.
-
-To address this, a new scheduler was proposed: CASS (Capacity-Aware Superset Scheduler). CASS optimizes the CFS task queue by using CPU capacity to compare the relative load across different cores. This results in better multi-core performance, especially under high utilization, as CASS does not reduce CPU capacity when the CPU is overloaded. However, CASS has been shown to be inferior to EAS in terms of energy efficiency.
-
-For this reason, rather than following the proposals of other projects, Uperf Aware offers a different approach. Our goal is to be a custom scheduler that unifies the behavior of EAS and CASS. The goal is to deliver a level of single-core performance, cache locality, multi-core performance, and efficiency that neither scheduler could achieve alone.
-
-With this approach, Uperf Aware aims to be a "ultimate" custom scheduler that can be integrated into various devices without the need to recompile the kernel. This allows a wider range of users to test and benefit from this optimization.
+A form of scheduling based on fine-grained user space. Instead of relying on the universal and rigid rules of conditional schedulers, Uperf has now become a step ahead of these kernel schedulers. Based on a custom scheduler called CASS (Capacity-Aware Superset Scheduler), Uperf simplifies its ability to select cores based on demand and need, specializing in single- and multi-core performance, cache locality, and energy awareness. With these three factors, Uperf can now schedule tasks more efficiently and beneficially for concurrent performance and energy savings.
 
 ## 主要功能
 
@@ -28,6 +20,7 @@ With this approach, Uperf Aware aims to be a "ultimate" custom scheduler that ca
 - 除非SfAnalysis注入失败，大多数情况SELinux可保持`enforcing`
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
+- Improve memory management by giving correct priorities and affinities to memory recycling and various cleaning threads, allowing overall memory management to be much better compared to before.
 
 ## 下载
 

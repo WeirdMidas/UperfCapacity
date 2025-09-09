@@ -27,7 +27,7 @@ apply_once() {
     # In a similar vein to setting sysctl_sched_migration_cost to zero, disable CACHE_HOT_BUDDY to better leverage the DynamIQ Shared Unit (DSU). With the DSU, L2$ and L3$ locality isn't lost when a task is migrated to another intra-DSU core
     set_task_scheduler_flags "NO_CACHE_HOT_BUDDY"
     
-    # in a similar vein, disabling rq_affinity on all blocks ensures better load balancing due to I/O with better cache locality purposes, due to the dynamlQ architecture having shared cache.
+    # in a similar vein, disabling rq_affinity on all blocks ensures better load balancing due to I/O with better cache locality purposes, due to the dynamlQ architecture having shared cache
     set_rq_affinity "0"
     
     # This core_ctl configuration is as close to ideal as possible for this architecture

@@ -349,14 +349,50 @@
           ]
         }, 
         {
-          "name": "Memory reclaim", 
-          "regex": "swapd|compactd", 
+          "name": "Push Notification Threads", 
+          "regex": "(PushReceiver|GCM-Thread|Firebase-Message-Receiver)", 
           "pinned": true, 
           "rules": [
             {
               "k": ".", 
               "ac": "auto", 
               "pc": "coop2"
+            }
+          ]
+        }, 
+        {
+          "name": "Log Collector", 
+          "regex": "logd", 
+          "pinned": true, 
+          "rules": [
+            {
+              "k": ".", 
+              "ac": "bg", 
+              "pc": "coop_bg"
+            }
+          ]
+        }, 
+        {
+          "name": "Memory reclaim", 
+          "regex": "swapd", 
+          "pinned": true, 
+          "rules": [
+            {
+              "k": ".", 
+              "ac": "auto", 
+              "pc": "coop2"
+            }
+          ]
+        }, 
+        {
+          "name": "Memory clean", 
+          "regex": "compactd|oom_reaper", 
+          "pinned": true, 
+          "rules": [
+            {
+              "k": ".", 
+              "ac": "auto", 
+              "pc": "coop"
             }
           ]
         }, 

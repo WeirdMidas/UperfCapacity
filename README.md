@@ -2,7 +2,7 @@
 
 一个Android用户态性能控制器，实现大部分内核态升频功能，并支持更多情景识别。
 
-A form of scheduling based on fine-grained user space. Instead of relying on the universal and rigid rules of conditional schedulers, Uperf has now become a step ahead of these kernel schedulers. Based on a custom scheduler called CASS (Capacity-Aware Superset Scheduler), Uperf simplifies its ability to select cores based on demand and need, specializing in single- and multi-core performance, cache locality, and energy awareness. With these three factors, Uperf can now schedule tasks more efficiently and beneficially for concurrent performance and energy savings.
+A scheduling approach based on fine-grained control and focused on user space. Instead of relying on the rigid rules of conditional kernel schedulers, Uperf now takes things a step further. Based on the philosophy of a custom scheduler called CASS (Capacity-Aware Superset Scheduler), Uperf simplifies core selection based on demand and need. By specializing in single- and multi-core performance, cache locality, and energy efficiency, Uperf can schedule tasks more efficiently and beneficially for concurrent performance and energy savings.
 
 ## 主要功能
 
@@ -24,7 +24,7 @@ A form of scheduling based on fine-grained user space. Instead of relying on the
 
 ## 下载
 
-https://github.com/yc9559/uperf/releases
+https://github.com/WeirdMidas/UperfCapacity/releases
 
 ## 安装
 
@@ -91,6 +91,9 @@ A：Uperf在大多数平台可以正常工作，在测试阶段收集到了以�
 
 Q：使用Magisk安装时提示`not supported`，这是为什么？  
 A：此硬件平台没有预制的配置文件，可能需要自行适配。  
+
+Q. What is the goal of this new Uperf?
+A. It's a revamp of Matt Yang's Uperf. Now that I recognize the way the scheduler works and its limitations, my proposal is to introduce the same way the custom scheduler called CASS works in all Android schedulers, without needing to recompile the kernel, just by installing the module. However, this doesn't leave aside some basic mechanisms like EAS. Based on this, my Uperf scheduler will be a combination of EAS + CASS, with a stronger focus on CASS than EAS. My current goal is to deliver excellent fluidity in both games and daily use, and to deliver decent battery life comparable to or better than EAS.
 
 ## 详细介绍
 

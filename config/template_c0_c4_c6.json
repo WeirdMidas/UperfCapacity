@@ -114,7 +114,7 @@
         "auto": {
           "bg": "", 
           "fg": "", 
-          "idle": "c0", 
+          "idle": "", 
           "touch": "", 
           "boost": ""
         }, 
@@ -186,35 +186,35 @@
         "norm": {
           "bg": -1, 
           "fg": -1, 
-          "idle": 126, 
+          "idle": -2, 
           "touch": 120, 
           "boost": 123
         }, 
         "coop_bg": {
           "bg": -2, 
           "fg": 130, 
-          "idle": 139, 
+          "idle": 132, 
           "touch": 125, 
           "boost": 128
         }, 
         "coop": {
           "bg": -2, 
           "fg": 126, 
-          "idle": 127, 
+          "idle": 128, 
           "touch": 122, 
           "boost": 125
         }, 
         "coop2": {
           "bg": -2, 
           "fg": 125, 
-          "idle": 126, 
+          "idle": 127, 
           "touch": 120, 
           "boost": 123
         }, 
         "coop3": {
           "bg": -1, 
           "fg": 125, 
-          "idle": 126, 
+          "idle": 127, 
           "touch": 120, 
           "boost": 123
         }, 
@@ -352,50 +352,14 @@
           ]
         }, 
         {
-          "name": "Push Notification Threads", 
-          "regex": "(PushReceiver|GCM-Thread|Firebase-Message-Receiver)", 
-          "pinned": true, 
-          "rules": [
-            {
-              "k": ".", 
-              "ac": "auto", 
-              "pc": "coop2"
-            }
-          ]
-        }, 
-        {
-          "name": "Log Collector", 
-          "regex": "logd", 
-          "pinned": true, 
-          "rules": [
-            {
-              "k": ".", 
-              "ac": "bg", 
-              "pc": "coop_bg"
-            }
-          ]
-        }, 
-        {
           "name": "Memory reclaim", 
-          "regex": "swapd", 
+          "regex": "swapd|compactd", 
           "pinned": true, 
           "rules": [
             {
               "k": ".", 
               "ac": "auto", 
               "pc": "coop2"
-            }
-          ]
-        }, 
-        {
-          "name": "Memory clean", 
-          "regex": "compactd|oom_reaper", 
-          "pinned": true, 
-          "rules": [
-            {
-              "k": ".", 
-              "ac": "auto", 
-              "pc": "coop"
             }
           ]
         }, 

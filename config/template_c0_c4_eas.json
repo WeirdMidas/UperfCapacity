@@ -187,8 +187,8 @@
         }, 
         "coop": {
           "bg": -2, 
-          "fg": 126, 
-          "idle": 128, 
+          "fg": 127, 
+          "idle": 129, 
           "touch": 122, 
           "boost": 125
         }, 
@@ -316,7 +316,12 @@
           "pinned": true, 
           "rules": [
             {
-              "k": "^(Jit thread pool|HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "k": "^(Jit thread pool)", 
+              "ac": "auto", 
+              "pc": "coop3"
+            }, 
+            {
+              "k": "^(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
               "ac": "auto", 
               "pc": "coop"
             }, 

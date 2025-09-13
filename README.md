@@ -1,4 +1,5 @@
 # Capacity-Userspace Superset Scheduler
+![1000003544](https://github.com/user-attachments/assets/49bcf050-581d-4270-9796-4cfad7ace104)
 
 ## Modern, Energy-Conscious and Efficient Custom Scheduler
 
@@ -615,9 +616,11 @@ This is to help me build a more efficient powerModel for your SOC, to extract ma
 - emptybot08(github)  
 - ahzhi(github)  
 - Saumer7(github)  
+- @sayoriicide (artist of the image I used as the cover)
 
 ## 捐赠
 
 如果你实在愿意，下面是感谢云讨饭通道(备注写上你的ID和来源平台)：  
+
 
 ![](media/alipay-qr.png)

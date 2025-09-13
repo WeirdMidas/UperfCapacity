@@ -189,31 +189,31 @@
         }, 
         "coop_bg": {
           "bg": -2, 
-          "fg": 130, 
-          "idle": 132, 
-          "touch": 125, 
-          "boost": 128
+          "fg": 128, 
+          "idle": 130, 
+          "touch": 132, 
+          "boost": 125
         }, 
         "coop": {
           "bg": -2, 
-          "fg": 127, 
-          "idle": 129, 
-          "touch": 122, 
-          "boost": 125
+          "fg": 125, 
+          "idle": 127, 
+          "touch": 129, 
+          "boost": 122
         }, 
         "coop2": {
           "bg": -2, 
-          "fg": 125, 
-          "idle": 127, 
-          "touch": 120, 
-          "boost": 123
+          "fg": 123, 
+          "idle": 125, 
+          "touch": 127, 
+          "boost": 120
         }, 
         "coop3": {
           "bg": -1, 
-          "fg": 125, 
-          "idle": 127, 
-          "touch": 120, 
-          "boost": 123
+          "fg": 123, 
+          "idle": 125, 
+          "touch": 127, 
+          "boost": 120
         }, 
         "ui": {
           "bg": -3, 

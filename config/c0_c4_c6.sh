@@ -30,6 +30,9 @@ apply_once() {
     # in a similar vein, disabling rq_affinity on all blocks ensures better load balancing due to I/O with better cache locality purposes, due to the dynamlQ architecture having shared cache
     set_rq_affinity "0"
     
+    # We should not use the prime core for irq interrupts
+    lock_val "3f" /proc/irq/default_smp_affinity
+    
     # This core_ctl configuration is as close to ideal as possible for this architecture
     set_corectl_param "enable" "0:1 4:1 6:1"
     set_corectl_param "min_cpus" "0:4 4:2 6:0"

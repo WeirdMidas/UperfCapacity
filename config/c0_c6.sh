@@ -30,6 +30,9 @@ apply_once() {
     # We can use rq_affinity to TRY to mimic the aspect of determining the best CPU to activate a task among CPUs that have the same relative utilization, but in a generic way where we will only determine the best CPU for tasks related to general interrupts, favoring single-core performance
     set_rq_affinity "1"
     
+    # Typically in this type of architecture, small cores handle jrq interrupts well
+    lock_val "3f" /proc/irq/default_smp_affinity
+    
     # This core_ctl configuration is as close to ideal as possible for this architecture
     set_corectl_param "enable" "0:1 6:1"
     set_corectl_param "min_cpus" "0:4 6:1"

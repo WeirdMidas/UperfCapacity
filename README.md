@@ -1,8 +1,20 @@
 # Capacity-Userspace Superset Scheduler
 
+## Modern, Energy-Conscious and Efficient Custom Scheduler
+
 一个Android用户态性能控制器，实现大部分内核态升频功能，并支持更多情景识别。
 
-A scheduling approach based on fine-grained control and focused on user space. Instead of relying on the rigid rules of conditional kernel schedulers, Uperf now takes things a step further. Based on the philosophy of a custom scheduler called CASS (Capacity-Aware Superset Scheduler), Uperf simplifies core selection based on demand and need. By specializing in single- and multi-core performance, cache locality, and energy efficiency, Uperf can schedule tasks more efficiently and beneficially for concurrent performance and energy savings.
+A scheduling approach based on fine-grained control and focused on user space. Instead of relying on the rigid rules of conditional kernel schedulers, Uperf now takes things a step further. Based on the philosophy of a custom scheduler called CASS (Capacity-Aware Superset Scheduler), Uperf simplifies core selection based on demand and need. By specializing in single- and multi-core performance, cache locality, and energy efficiency, Uperf can schedule tasks more efficiently and beneficially for concurrent performance and energy savings. Based on this, UperfCapacity is a custom scheduler formula that seeks to maximize the physical capacity of SOCs that use it and are compatible. Ultimately, we'll be integrating ideas and formulas that Google uses in its devices, such as ADPF, to manage threads more seamlessly and efficiently with the SOC itself.
+
+Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commits/master/) and if you want to help the project by creating a template for it or creating a profile for your specific SOC, you can see the compatible architecture templates [here](https://github.com/WeirdMidas/UperfCapacity/tree/master/config)    
+
+---
+
+> [RECOMMENDATION!]
+> It is recommended to use the [SkyScene Addon](https://github.com/WeirdMidas/SkySceneAddon) module with Uperf to improve energy efficiency, fluidity, and performance by improving memory and I/O management.
+
+---
+ 
 
 ## 主要功能
 

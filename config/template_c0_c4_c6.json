@@ -188,18 +188,18 @@
           "fg": -1, 
           "idle": -2, 
           "touch": 120, 
-          "boost": 123
+          "boost": 118
         }, 
         "obs": {
           "bg": -1, 
-          "fg": 127, 
+          "fg": 126, 
           "idle": -3, 
           "touch": 122, 
-          "boost": 125
+          "boost": 124
         }, 
         "obs2": {
           "bg": -1, 
-          "fg": 125, 
+          "fg": 122, 
           "idle": -2, 
           "touch": 118, 
           "boost": 120
@@ -208,36 +208,36 @@
           "bg": -2, 
           "fg": -1, 
           "idle": -3, 
-          "touch": 122, 
-          "boost": 125
+          "touch": 125, 
+          "boost": 122
         }, 
         "coop": {
           "bg": -2, 
           "fg": 125, 
           "idle": -2, 
-          "touch": 120, 
-          "boost": 123
+          "touch": 123, 
+          "boost": 120
         }, 
         "coop2": {
           "bg": -1, 
           "fg": 123, 
           "idle": -2, 
-          "touch": 118, 
-          "boost": 120
+          "touch": 120, 
+          "boost": 118
         }, 
         "coop3": {
           "bg": -1, 
           "fg": 120, 
           "idle": -1, 
-          "touch": 116, 
-          "boost": 118
+          "touch": 118, 
+          "boost": 116
         }, 
         "ui": {
-          "bg": -3, 
+          "bg": -2, 
           "fg": 110, 
           "idle": 120, 
           "touch": 98, 
-          "boost": 108
+          "boost": 105
         }, 
         "rtusr": {
           "bg": 98, 
@@ -317,12 +317,12 @@
             {
               "k": "^(Greezer|CachedApp|SystemPressure)|[Mm]emory", 
               "ac": "bg", 
-              "pc": "obs"
+              "pc": "coop"
             }, 
             {
               "k": "^(TaskSnapshot|SensorService)", 
               "ac": "bg", 
-              "pc": "coop"
+              "pc": "auto"
             }, 
             {
               "k": "^Async", 
@@ -349,7 +349,7 @@
             {
               "k": "^(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
               "ac": "auto", 
-              "pc": "obs2"
+              "pc": "coop"
             }, 
             {
               "k": ".", 
@@ -378,7 +378,7 @@
             {
               "k": ".", 
               "ac": "auto", 
-              "pc": "ui"
+              "pc": "coop2"
             }
           ]
         }, 
@@ -395,14 +395,26 @@
           ]
         }, 
         {
-          "name": "Memory Recycling", 
-          "regex": "swapd|compactd|oom_reaper", 
+          "name": "Memory reclaim", 
+          "regex": "swapd", 
           "pinned": true, 
           "rules": [
             {
               "k": ".", 
               "ac": "auto", 
-              "pc": "obs2"
+              "pc": "coop2"
+            }
+          ]
+        }, 
+        {
+          "name": "Memory clean", 
+          "regex": "compactd|oom_reaper", 
+          "pinned": true, 
+          "rules": [
+            {
+              "k": ".", 
+              "ac": "auto", 
+              "pc": "coop"
             }
           ]
         }, 
@@ -436,19 +448,9 @@
           "pinned": false, 
           "rules": [
             {
-              "k": "^(Jit thread pool)", 
+              "k": "^(Jit thread pool|HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
               "ac": "auto", 
-              "pc": "coop3"
-            }, 
-            {
-              "k": "(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
-              "ac": "auto", 
-              "pc": "obs2"
-            }, 
-            {
-              "k": ".", 
-              "ac": "auto", 
-              "pc": "auto"
+              "pc": "coop"
             }
           ]
         }, 
@@ -463,12 +465,12 @@
               "pc": "ui"
             }, 
             {
-              "k": "^(UnityMain|RenderThread |GameThread|RHIThread|GLThread)", 
+              "k": "^(UnityMain|RenderThread |GameThread)", 
               "ac": "gtmain", 
               "pc": "auto"
             }, 
             {
-              "k": "^(Unity|Worker Thread|TaskGraph||Thread-|Job.Worker)", 
+              "k": "^(Unity|Worker Thread|TaskGraph|RHIThread|GLThread|Thread-|Job.Worker)", 
               "ac": "gtcoop", 
               "pc": "auto"
             }, 

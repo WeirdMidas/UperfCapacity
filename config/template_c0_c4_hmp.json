@@ -305,12 +305,12 @@
             {
               "k": "^(Greezer|CachedApp|SystemPressure)|[Mm]emory", 
               "ac": "bg", 
-              "pc": "coop"
+              "pc": "obs"
             }, 
             {
               "k": "^(TaskSnapshot|SensorService)", 
               "ac": "bg", 
-              "pc": "auto"
+              "pc": "coop"
             }, 
             {
               "k": "^Async", 
@@ -337,7 +337,7 @@
             {
               "k": "^(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
               "ac": "auto", 
-              "pc": "coop"
+              "pc": "obs2"
             }, 
             {
               "k": ".", 
@@ -366,7 +366,7 @@
             {
               "k": ".", 
               "ac": "auto", 
-              "pc": "coop2"
+              "pc": "ui"
             }
           ]
         }, 
@@ -383,26 +383,14 @@
           ]
         }, 
         {
-          "name": "Memory reclaim", 
-          "regex": "swapd", 
+          "name": "Memory Recycling", 
+          "regex": "swapd|compactd|oom_reaper", 
           "pinned": true, 
           "rules": [
             {
               "k": ".", 
               "ac": "auto", 
-              "pc": "coop2"
-            }
-          ]
-        }, 
-        {
-          "name": "Memory clean", 
-          "regex": "compactd|oom_reaper", 
-          "pinned": true, 
-          "rules": [
-            {
-              "k": ".", 
-              "ac": "auto", 
-              "pc": "coop"
+              "pc": "obs2"
             }
           ]
         }, 
@@ -436,9 +424,19 @@
           "pinned": false, 
           "rules": [
             {
-              "k": "^(Jit thread pool|HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "k": "^(Jit thread pool)", 
               "ac": "auto", 
-              "pc": "coop"
+              "pc": "coop3"
+            }, 
+            {
+              "k": "(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "ac": "auto", 
+              "pc": "obs2"
+            }, 
+            {
+              "k": ".", 
+              "ac": "auto", 
+              "pc": "auto"
             }
           ]
         }, 
@@ -453,12 +451,12 @@
               "pc": "ui"
             }, 
             {
-              "k": "^(UnityMain|RenderThread |GameThread)", 
+              "k": "^(UnityMain|RenderThread |GameThread|RHIThread|GLThread)", 
               "ac": "gtmain", 
               "pc": "auto"
             }, 
             {
-              "k": "^(Unity|Worker Thread|TaskGraph|RHIThread|GLThread|Thread-|Job.Worker)", 
+              "k": "^(Unity|Worker Thread|TaskGraph||Thread-|Job.Worker)", 
               "ac": "gtcoop", 
               "pc": "auto"
             }, 

@@ -33,7 +33,10 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - 除非SfAnalysis注入失败，大多数情况SELinux可保持`enforcing`
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
+- Change the original Uperf scheduling approach to something more similar to EAS with CASS core selection. Basically, tasks start on small cores (UI/Normal) and schedule between cores using the baseline energy model, favoring the highest decision-making based on energy savings. Also implementing strategies like ADPF, where game cooperation threads are placed on small cores, while the main game threads are placed on large cores, allowing for energy savings in games while significantly reducing resource contention due to overload on large cores, favoring greater stability.
 - Improve memory management by giving correct priorities and affinities to memory recycling and various cleaning threads, allowing overall memory management to be much better compared to before.
+- Choose the best render based on compatibility. This allows the user's GPU to be used to its fullest potential by using a render that best suits their needs.
+- Improve the stability of the display refresh rate for energy efficiency and to avoid variations that may be perceived by the user.
 
 ## 下载
 

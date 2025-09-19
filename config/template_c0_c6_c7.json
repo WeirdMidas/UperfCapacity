@@ -365,8 +365,8 @@
           "rules": [
             {
               "k": ".", 
-              "ac": "auto", 
-              "pc": "auto"
+              "ac": "norm", 
+              "pc": "norm"
             }
           ]
         }, 

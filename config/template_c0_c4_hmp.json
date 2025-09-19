@@ -157,87 +157,66 @@
           "touch": 0, 
           "boost": 0
         }, 
-        "idle": {
-          "bg": -3, 
-          "fg": -3, 
-          "idle": -3, 
-          "touch": -3, 
-          "boost": -3
-        }, 
         "bg": {
-          "bg": -2, 
-          "fg": -1, 
-          "idle": -3, 
+          "bg": -3, 
+          "fg": 139, 
+          "idle": 139, 
           "touch": 139, 
           "boost": 139
         }, 
         "norm": {
           "bg": -1, 
           "fg": -1, 
-          "idle": -2, 
+          "idle": 120, 
           "touch": 120, 
-          "boost": 118
+          "boost": 130
         }, 
         "obs": {
-          "bg": -1, 
-          "fg": 126, 
-          "idle": -3, 
-          "touch": 122, 
-          "boost": 124
-        }, 
-        "obs2": {
-          "bg": -1, 
-          "fg": 122, 
-          "idle": -2, 
-          "touch": 118, 
-          "boost": 120
-        }, 
-        "coop_bg": {
-          "bg": -2, 
-          "fg": -1, 
-          "idle": -3, 
-          "touch": 125, 
-          "boost": 122
+          "bg": -3, 
+          "fg": 128, 
+          "idle": 124, 
+          "touch": 124, 
+          "boost": 135
         }, 
         "coop": {
-          "bg": -2, 
-          "fg": 125, 
-          "idle": -2, 
-          "touch": 123, 
-          "boost": 120
+          "bg": -3, 
+          "fg": 124, 
+          "idle": 122, 
+          "touch": 122, 
+          "boost": 130
         }, 
-        "coop2": {
-          "bg": -1, 
-          "fg": 123, 
-          "idle": -2, 
+        "manu": {
+          "bg": -3, 
+          "fg": 122, 
+          "idle": 120, 
           "touch": 120, 
-          "boost": 118
+          "boost": 125
         }, 
-        "coop3": {
-          "bg": -1, 
+        "orq": {
+          "bg": -3, 
           "fg": 120, 
-          "idle": -1, 
+          "idle": 118, 
           "touch": 118, 
-          "boost": 116
+          "boost": 123
         }, 
         "ui": {
-          "bg": -2, 
-          "fg": 110, 
-          "idle": 120, 
+          "bg": -3, 
+          "fg": 120, 
+          "idle": 110, 
           "touch": 98, 
-          "boost": 105
+          "boost": 116
         }, 
         "rtusr": {
           "bg": 98, 
           "fg": 98, 
-          "idle": 99, 
+          "idle": 97, 
           "touch": 97, 
           "boost": 98
         }, 
         "rtsys": {
           "bg": 97, 
           "fg": 97, 
-          "idle": 98, 
+          "idle": 96, 
           "touch": 96, 
           "boost": 97
         }
@@ -303,19 +282,19 @@
           "pinned": true, 
           "rules": [
             {
-              "k": "^(Greezer|CachedApp|SystemPressure)|[Mm]emory", 
+              "k": "^(Greezer|CachedApp)|[Mm]emory", 
               "ac": "bg", 
-              "pc": "obs"
+              "pc": "manu"
             }, 
             {
-              "k": "^(TaskSnapshot|SensorService)", 
-              "ac": "bg", 
-              "pc": "coop"
+              "k": "^(SystemPressure|SensorService|TaskSnapshot)", 
+              "ac": "auto", 
+              "pc": "obs"
             }, 
             {
               "k": "^Async", 
               "ac": "auto", 
-              "pc": "coop3"
+              "pc": "ui"
             }, 
             {
               "k": ".", 
@@ -332,12 +311,12 @@
             {
               "k": "^(Jit thread pool)", 
               "ac": "auto", 
-              "pc": "coop3"
+              "pc": "orq"
             }, 
             {
               "k": "^(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
-              "ac": "auto", 
-              "pc": "obs2"
+              "ac": "bg", 
+              "pc": "manu"
             }, 
             {
               "k": ".", 
@@ -359,38 +338,14 @@
           ]
         }, 
         {
-          "name": "Push Notification Threads", 
-          "regex": "(PushReceiver|GCM-Thread|Firebase-Message-Receiver)", 
+          "name": "Memory reclaim", 
+          "regex": "swapd|compactd", 
           "pinned": true, 
           "rules": [
             {
               "k": ".", 
               "ac": "auto", 
-              "pc": "ui"
-            }
-          ]
-        }, 
-        {
-          "name": "Log Collector", 
-          "regex": "logd", 
-          "pinned": true, 
-          "rules": [
-            {
-              "k": ".", 
-              "ac": "bg", 
-              "pc": "coop_bg"
-            }
-          ]
-        }, 
-        {
-          "name": "Memory Recycling", 
-          "regex": "swapd|compactd|oom_reaper", 
-          "pinned": true, 
-          "rules": [
-            {
-              "k": ".", 
-              "ac": "auto", 
-              "pc": "obs2"
+              "pc": "manu"
             }
           ]
         }, 
@@ -426,17 +381,12 @@
             {
               "k": "^(Jit thread pool)", 
               "ac": "auto", 
-              "pc": "coop3"
+              "pc": "orq"
             }, 
             {
-              "k": "(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
-              "ac": "auto", 
-              "pc": "obs2"
-            }, 
-            {
-              "k": ".", 
-              "ac": "auto", 
-              "pc": "auto"
+              "k": "^(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "ac": "bg", 
+              "pc": "manu"
             }
           ]
         }, 
@@ -451,12 +401,12 @@
               "pc": "ui"
             }, 
             {
-              "k": "^(UnityMain|RenderThread |GameThread|RHIThread|GLThread)", 
+              "k": "^(UnityMain|RenderThread |GameThread)", 
               "ac": "gtmain", 
               "pc": "auto"
             }, 
             {
-              "k": "^(Unity|Worker Thread|TaskGraph||Thread-|Job.Worker)", 
+              "k": "^(Unity|Worker Thread|TaskGraph|RHIThread|GLThread|Thread-|Job.Worker)", 
               "ac": "gtcoop", 
               "pc": "auto"
             }, 

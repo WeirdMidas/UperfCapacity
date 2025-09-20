@@ -1,6 +1,7 @@
 [Major Changes]
 - Changes to the CPUset. Focus on better load balancing between cgroups and saving battery power during idle.
 - Removed compatibility with 32-bit SOCs, we will focus only on 64-bit devices, to bring maximum performance and efficiency to modern devices.
+- Given Uperf more control over performance demands, with the ability to control frame rate, camera performance, and various other settings that provided Uperf with greater control.
 
 [Current Compatibility]
 

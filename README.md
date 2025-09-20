@@ -37,6 +37,7 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Improve memory management by giving correct priorities and affinities to memory recycling and various cleaning threads, allowing overall memory management to be much better compared to before.
 - Choose the best render based on compatibility. This allows the user's GPU to be used to its fullest potential by using a render that best suits their needs.
 - Improve the stability of the display refresh rate for energy efficiency and to avoid variations that may be perceived by the user.
+- Develop "Golden SOCs", which are a way to signal that an Uperf-compatible SOC has a "perfect" power model (perfectly balanced between efficiency and performance simultaneously).
 
 ## 下载
 

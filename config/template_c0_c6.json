@@ -168,33 +168,12 @@
           "touch": 120, 
           "boost": 130
         }, 
-        "obs": {
-          "bg": -3, 
-          "fg": 128, 
-          "idle": 124, 
-          "touch": 124, 
-          "boost": 135
-        }, 
         "coop": {
           "bg": -3, 
           "fg": 124, 
           "idle": 122, 
           "touch": 122, 
           "boost": 130
-        }, 
-        "manu": {
-          "bg": -3, 
-          "fg": 122, 
-          "idle": 120, 
-          "touch": 120, 
-          "boost": 125
-        }, 
-        "orq": {
-          "bg": -3, 
-          "fg": 120, 
-          "idle": 118, 
-          "touch": 118, 
-          "boost": 123
         }, 
         "ui": {
           "bg": -3, 
@@ -279,19 +258,14 @@
           "pinned": true, 
           "rules": [
             {
-              "k": "^(Greezer|CachedApp)|[Mm]emory", 
+              "k": "^(TaskSnapshot|Greezer|CachedApp|SystemPressure|SensorService)|[Mm]emory", 
               "ac": "bg", 
-              "pc": "manu"
-            }, 
-            {
-              "k": "^(SystemPressure|SensorService|TaskSnapshot)", 
-              "ac": "auto", 
-              "pc": "obs"
+              "pc": "auto"
             }, 
             {
               "k": "^Async", 
               "ac": "auto", 
-              "pc": "ui"
+              "pc": "norm"
             }, 
             {
               "k": ".", 
@@ -306,14 +280,9 @@
           "pinned": true, 
           "rules": [
             {
-              "k": "^(Jit thread pool)", 
-              "ac": "auto", 
-              "pc": "orq"
-            }, 
-            {
-              "k": "^(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "k": "^(Jit thread pool|HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
               "ac": "bg", 
-              "pc": "manu"
+              "pc": "auto"
             }, 
             {
               "k": ".", 
@@ -342,7 +311,7 @@
             {
               "k": ".", 
               "ac": "auto", 
-              "pc": "manu"
+              "pc": "bg"
             }
           ]
         }, 
@@ -353,8 +322,8 @@
           "rules": [
             {
               "k": ".", 
-              "ac": "norm", 
-              "pc": "norm"
+              "ac": "auto", 
+              "pc": "auto"
             }
           ]
         }, 
@@ -376,14 +345,9 @@
           "pinned": false, 
           "rules": [
             {
-              "k": "^(Jit thread pool)", 
-              "ac": "auto", 
-              "pc": "orq"
-            }, 
-            {
-              "k": "^(HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "k": "^(Jit thread pool|HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
               "ac": "bg", 
-              "pc": "manu"
+              "pc": "auto"
             }
           ]
         }, 

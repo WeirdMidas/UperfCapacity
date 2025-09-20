@@ -31,6 +31,7 @@ unify_cgroup() {
 
     # unused
     rmdir /dev/cpuset/foreground/boost
+    rmdir /dev/cpuset/top-app/boost
 
     # work with uperf/ContextScheduler
     change_task_cgroup "surfaceflinger" "" "cpuset"
@@ -54,6 +55,9 @@ unify_sched() {
 
     for d in kernel walt; do
         mask_val "0" /proc/sys/$d/sched_force_lb_enable
+        mutate "0" /proc/sys/$d/sched_lib_mask_force
+        mutate "0" /proc/sys/$d/sched_walt_rotate_big_tasks
+        mutate "0" /proc/sys/$d/sched_coloc_busy_hysteresis_enable_cpus
     done
 }
 

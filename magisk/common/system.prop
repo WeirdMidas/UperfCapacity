@@ -2,6 +2,8 @@
 # Example: Change dpi
 # ro.sf.lcd_density=320
 
-# headroom for GC
-dalvik.vm.heapmaxfree=8m
-dalvik.vm.heapminfree=2m
+# Disable the default Android FPS limiter, we already control game performance through Uperf
+debug.graphics.game_default_frame_rate.disabled=true
+
+# We don't need aggressive perflocks, we can already control camera performance with Uperf
+persist.vendor.camera.perflock.enable=0

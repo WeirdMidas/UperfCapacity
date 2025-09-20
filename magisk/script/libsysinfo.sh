@@ -129,7 +129,7 @@ get_config_name() {
     "sdm660") echo "sdm660" ;;
     "sdm636") echo "sdm660" ;;
     "trinket") echo "sdm665" ;; # sdm665
-    "bengal") echo "sdm665" ;;  # sdm662
+    "bengal") echo "sdm680" ;;  # sdm685
     "msm8976") echo "sdm652" ;;
     "msm8956") echo "sdm650" ;;
     "msm8998") echo "sdm835" ;;

@@ -39,7 +39,7 @@ uperf_start() {
 
     # waiting for uperf initialization
     sleep 2
-    # uperf shouldn't preempt foreground tasks
+    # uperf cannot have control restricted
     rebuild_process_scan_cache
-    change_task_cgroup "uperf" "background" "cpuset"
+    change_task_cgroup "uperf" "" "cpuset"
 }

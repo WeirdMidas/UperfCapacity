@@ -1,120 +1,27 @@
-# 更新日志
+[Major Changes]
+- Changes to the CPUset. Focus on better load balancing between cgroups and saving battery power during idle.
+- Removed compatibility with 32-bit SOCs, we will focus only on 64-bit devices, to bring maximum performance and efficiency to modern devices.
 
-## DEV 22.09.04
+[Current Compatibility]
 
-- 改进 cpuset分组预留核心
-- 改进 sdm8g1+隐藏频点支持
-- 改进 减少二进制体积
-- 修复 Exynos2100王者荣耀掉帧，感谢@chbqby
+New:
+sdm680/sdm685
 
-## DEV 22.07.24
+All:
+Snapdragon 625/626/660/636/82x/835, 662/665/675/680/685/710/712/730/730g/750g/765/765g/768g/780/778g/778g+, 845/855/855+/860/865/865+/870/888/888+/8gen1/8gen1+
 
-- 新增 Helio P35/G35/G37支持
-- 改进 小核能耗模型
-- 改进 框架执行效率
-- 修复 熄屏指纹识别偏慢
+Helio P35/G35/G37/P65/G70/G80/G85/G90T, 700/720/800/810/820/900/920/8000/8100, 1000/1000l/1000+/1100/1200/9000
 
-## DEV 22.07.09
+Exynos 8890/8895/9810/9820/9825/990/1080/2100/2200
 
-- 新增 sdm8g1+支持
-- 改进 任务放置
-- 改进 功耗估计准确度
+Google Tensor gs101
 
-## DEV 22.06.26
+[Power Profiles]
+- powersave: significant performance constraints, suitable for users with low fluidity requirements.
+- balance: moderate performance constraints, suitable for everyday use on mobile devices.
+- performance: almost no performance constraints, suitable for everyday use on tablets.
+- fast: similar to Performance, with more sustained performance, suitable for mobile gaming.
 
-- 新增 移除`swjunk`
-- 改进 功耗分配
-- 改进 任务放置
-- 修复 后台程序破音
-
-## DEV 22.06.05
-
-- 新增 更多兼容性CPU频率写入器
-- 新增 兼容性生成CPU频率表
-- 修复 微信小程序启动缓慢
-- 修复 前台程序破音
-- 修复 部分崩溃问题
-- 修复 部分高通平台息屏功耗过高，感谢@NepPoseidon
-
-## DEV 22.05.20
-
-- 新增 开放配置文件自定义
-- 改进 CPU重负载调频稳定性
-- 改进 任务放置
-- 改进 顶层APP获取开销，感谢@nakixii
-- 修复 perapp切换崩溃
-- 修复 部分潜在崩溃代码
-- 修复 CPU频率写入器失效
-
-## DEV 22.05.09
-
-- 回退 混合CPU调频
-- 改进 触摸响应
-- 改进 CPU负载滤波器
-- 修复 sdm82x部分场景CPU频率无法写入
-- 修复 Exynos 2200支持
-
-## DEV 22.05.04
-
-- 新增 混合CPU调频
-- 改进 Android 7.0兼容性
-- 修复 EPIC写入器自检错误
-- 修复 全面屏手势失效，感谢@NebulaLeep
-- 暂时禁用SsAnalysis模块，由于降低了过渡动画流畅度
-
-## DEV 22.04.30
-
-- 改进 提高滑动操作跟手性
-- 改进 内核CPU调速器兼容性
-- 修复 部分设备全面屏手势失效
-- 修复 Pixel设备自动重启
-- 修复 任务调度器任务分类错误
-- 修复 游戏负载放置不稳定
-- 修复 游戏最小化破音
-
-## DEV 22.04.23
-
-- 增加 系统动画主动探针
-- 增加 CPU采样器负载预测
-- 增加 与系统用户态性能控制器协同调度
-- 增加 桌面启动器自动识别
-- 增加 适配谷歌tensor/天玑810
-- 改进 提高手势操作跟手性
-- 改进 减少SfAnalysis误报
-- 修复 识别上下文的任务调度器规则匹配错误
-- 修复 联发科PPM接口适配
-- 修复 破音问题
-- 修复 部分平台功耗模型
-
-## DEV 22.04.09
-
-- 增加大量平台初步适配
-- 改进Unity游戏和吃鸡游戏抖动
-- 改进弹幕2倍速视频流畅度
-- 更新部分平台功耗模型
-- 日志后缀名更换为txt
-
-## DEV 22.04.04
-
-- 插件式软件架构
-  - 使用C++重新开发
-  - 功能模块解耦，易扩展
-- 感知能耗的CPU调频器
-  - 用户态使能全平台统一体验
-  - 单核高性能，多核高能效
-  - 20-100hz基础采样率，快响应低开销
-- 识别上下文的任务调度器
-  - UI放大核，非关键放小核
-  - 全数据驱动，正则匹配
-  - 花费50%开发时间调试的默认规则
-- 动态sysfs写入
-  - 用户态性能控制器基石功能
-  - 实现更加简约高效
-- SfAnalysis
-  - 预测掉帧并在发生前拉升CPU
-  - 改进的帧反馈以及模糊匹配
-  - patch方式无需更改SELinux状态
-  - 独立选装，但是强烈推荐
-- SsAnalysis
-  - 跟系统线程放置器斗智斗勇
-  - 独立选装，但是强烈推荐
+[Additional Modules]
+- sfopt: A Surfaceflinger optimization module that provides dynamic refresh rate optimizations and derivatives. Designed to reduce Surfaceflinger power consumption and allow for less jitter.
+- ssanalysis: A module that controls the output of schedboosting to avoid triggering it, allowing better fps stability.

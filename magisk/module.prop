@@ -3,4 +3,4 @@ name=Capacity-Userspace Superset Scheduler
 version=v1(25.09.20)
 versionCode=220904
 author=Matt Yang (Fork: Weird Midas)
-description=Capacity Userspace Superset Performance Controller for Android Platforms. Repo: https://github.com/WeirdMidas/UperfCapacity
+description=Capacity Userspace Superset Performance Controller for Android Platforms. Repo: https://github.com/WeirdMidas/Uperf

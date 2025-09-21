@@ -6,10 +6,10 @@
 
 [Current Compatibility]
 
-New:
+New:    
 sdm680/sdm685
 
-All:
+All:   
 Snapdragon 625/626/660/636/82x/835, 662/665/675/680/685/710/712/730/730g/750g/765/765g/768g/780/778g/778g+, 845/855/855+/860/865/865+/870/888/888+/8gen1/8gen1+
 
 Helio P35/G35/G37/P65/G70/G80/G85/G90T, 700/720/800/810/820/900/920/8000/8100, 1000/1000l/1000+/1100/1200/9000
@@ -18,7 +18,7 @@ Exynos 8890/8895/9810/9820/9825/990/1080/2100/2200
 
 Google Tensor gs101
 
-"Gold" SOCs: 
+"Gold" SOCs:    
 sdm680
 
 [Power Profiles]
@@ -28,5 +28,4 @@ sdm680
 - fast: similar to Performance, with more sustained performance, suitable for mobile gaming.
 
 [Additional Modules]
-- sfopt: A Surfaceflinger optimization module that provides dynamic refresh rate optimizations and derivatives. Designed to reduce Surfaceflinger power consumption and allow for less jitter.
-- ssanalysis: A module that controls the output of schedboosting to avoid triggering it, allowing better fps stability.
+- sfopt: a surfaceflinger optimization module that provides dynamic refresh rate optimizations and derivatives. Designed to reduce Surfaceflinger power consumption and allow for less jitter.

@@ -25,12 +25,13 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - 主动采样系统负载，识别例如APP启动的瞬间重负载
 - 监听cpuset分组更新操作，识别正在操作的APP发生切换
 - 监听唤醒锁更新操作，识别屏幕是否熄灭
-- 监听注入到Surfaceflinger的hook发送的通知，识别渲染开始、滞后、结束
-- 支持Android 6.0 - 12
+- Replace sfanalysis with sfopt, a way to optimize surfaceflinger directly without using a hook, considerably reducing power consumption and display refresh rate interruptions.
+- Use core_ctl as our main form of CPU hotplug, now integrated with Uperf, corectl becomes our greatest weapon in selecting active and idle cores.
+- 支持Android 6.0 - 15
 - 支持arm64-v8a
 - 支持Magisk方式一键安装，版本不低于20.4+
 - 不依赖于Magisk，可以手动方式安装
-- 除非SfAnalysis注入失败，大多数情况SELinux可保持`enforcing`
+- sfopt optimizations will not impact SElinux, keeping it in "enforcing".
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
 - Change the original Uperf scheduling approach to something more similar to EAS with CASS core selection. Basically, tasks start on small cores (UI/Normal) and schedule between cores using the baseline energy model, favoring the highest decision-making based on energy savings. Also implementing strategies like ADPF, where game cooperation threads are placed on small cores, while the main game threads are placed on large cores, allowing for energy savings in games while significantly reducing resource contention due to overload on large cores, favoring greater stability.

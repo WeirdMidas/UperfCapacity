@@ -31,7 +31,9 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - 支持arm64-v8a
 - 支持Magisk方式一键安装，版本不低于20.4+
 - 不依赖于Magisk，可以手动方式安装
+- Fix some known issues and bugs in the Android environment, such as what happens on social networks where audios bug, go silent, etc.
 - sfopt optimizations will not impact SElinux, keeping it in "enforcing".
+- Use current mechanisms to manage subsystems such as Bluetooth audio and offload. This significantly reduces energy consumption when listening to music, using Bluetooth, and other features we use daily. This minimizes the impact on the user experience and significantly improves it.
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
 - Change the original Uperf scheduling approach to something more similar to EAS with CASS core selection. Basically, tasks start on small cores (UI/Normal) and schedule between cores using the baseline energy model, favoring the highest decision-making based on energy savings. Also implementing strategies like ADPF, where game cooperation threads are placed on small cores, while the main game threads are placed on large cores, allowing for energy savings in games while significantly reducing resource contention due to overload on large cores, favoring greater stability.

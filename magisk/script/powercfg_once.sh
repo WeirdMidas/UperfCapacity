@@ -55,9 +55,6 @@ unify_sched() {
 
     for d in kernel walt; do
         mask_val "0" /proc/sys/$d/sched_force_lb_enable
-        mutate "0" /proc/sys/$d/sched_lib_mask_force
-        mutate "0" /proc/sys/$d/sched_walt_rotate_big_tasks
-        mutate "0" /proc/sys/$d/sched_coloc_busy_hysteresis_enable_cpus
     done
 }
 
@@ -83,29 +80,22 @@ unify_lpm() {
     done
 }
 
-disable_hotplug() {
-    # Exynos hotplug
-    mutate "0" /sys/power/cpuhotplug/enabled
-    mutate "0" /sys/devices/system/cpu/cpuhotplug/enabled
-
-    # turn off msm_thermal
-    lock_val "0" /sys/module/msm_thermal/core_control/enabled
-    lock_val "N" /sys/module/msm_thermal/parameters/enabled
-
-    # 3rd
-    lock_val "0" /sys/kernel/intelli_plug/intelli_plug_active
-    lock_val "0" /sys/module/blu_plug/parameters/enabled
-    lock_val "0" /sys/devices/virtual/misc/mako_hotplug_control/enabled
-    lock_val "0" /sys/module/autosmp/parameters/enabled
-    lock_val "0" /sys/kernel/zen_decision/enabled
-
-    # stop sched core_ctl
-    set_corectl_param "enable" "0:0 6:0 7:0"
-
-    # bring all cores online
-    for i in 0 1 2 3 4 5 6 7 8 9; do
-        lock_val "1" /sys/devices/system/cpu/cpu$i/online
-    done
+unify_hotplug() {
+  if [ -d /sys/devices/system/cpu/cpufreq/policy4 ]; then
+    if [ -d /sys/devices/system/cpu/cpufreq/policy7 ]; then
+      . $BASEDIR/generic/c0_c4_c7.sh
+    elif [ -d /sys/devices/system/cpu/cpufreq/policy6 ]; then
+      . $BASEDIR/generic/c0_c4_c6.sh
+    else
+      . $BASEDIR/generic/c0_c4.sh
+    fi
+  elif [ -d /sys/devices/system/cpu/cpufreq/policy6 ]; then
+    if [ -d /sys/devices/system/cpu/cpufreq/policy7 ]; then
+      . $BASEDIR/generic/c0_c6_c7.sh
+    else
+      . $BASEDIR/generic/c0_c6.sh
+    fi
+  fi
 }
 
 disable_kernel_boost() {
@@ -235,7 +225,7 @@ echo "sh=$(which sh)"
 
 # set permission
 disable_kernel_boost
-disable_hotplug
+unify_hotplug
 unify_sched
 unify_devfreq
 unify_lpm
@@ -247,7 +237,7 @@ restart_userspace_boost
 
 # unify value
 disable_kernel_boost
-disable_hotplug
+unify_hotplug
 unify_sched
 unify_devfreq
 unify_lpm

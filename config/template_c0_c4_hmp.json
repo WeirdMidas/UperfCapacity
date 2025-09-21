@@ -94,6 +94,10 @@
           5, 
           6,
           7
+        ], 
+        "pack": [
+          0, 
+          1
         ]
       }, 
       "affinity": {
@@ -107,14 +111,14 @@
         "norm": {
           "bg": "", 
           "fg": "all", 
-          "idle": "all", 
+          "idle": "c0", 
           "touch": "all", 
           "boost": "all"
         }, 
         "bg": {
           "bg": "", 
           "fg": "c0", 
-          "idle": "c0", 
+          "idle": "pack", 
           "touch": "c0", 
           "boost": "c0"
         }, 

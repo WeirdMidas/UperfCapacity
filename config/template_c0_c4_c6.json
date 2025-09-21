@@ -71,10 +71,7 @@
     }, 
     "sysfs": {
       "enable": true, 
-      "knob": {
-        "govMain1": "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor", 
-        "govMain2": "/sys/devices/system/cpu/cpufreq/policy4/scaling_governor", 
-        "govMain3": "/sys/devices/system/cpu/cpufreq/policy6/scaling_governor", 
+      "knob": { 
         "cpusetTa": "/dev/cpuset/top-app/cpus", 
         "cpusetFg": "/dev/cpuset/foreground/cpus", 
         "cpusetBg": "/dev/cpuset/background/cpus", 
@@ -108,6 +105,14 @@
         "c2": [
           6,
           7
+        ], 
+        "mid": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
         ]
       }, 
       "affinity": {
@@ -120,10 +125,10 @@
         }, 
         "norm": {
           "bg": "", 
-          "fg": "all", 
-          "idle": "c0", 
-          "touch": "all", 
-          "boost": "all"
+          "fg": "mid", 
+          "idle": "mid", 
+          "touch": "mid", 
+          "boost": "mid"
         }, 
         "bg": {
           "bg": "", 
@@ -134,31 +139,31 @@
         }, 
         "ui": {
           "bg": "", 
-          "fg": "all", 
-          "idle": "c0", 
+          "fg": "mid", 
+          "idle": "mid", 
           "touch": "c1", 
-          "boost": "c2"
+          "boost": "all"
         }, 
         "crit": {
           "bg": "", 
-          "fg": "all", 
-          "idle": "c0", 
-          "touch": "c1", 
-          "boost": "c2"
-        }, 
-        "gtcoop": {
-          "bg": "", 
-          "fg": "all", 
-          "idle": "c0", 
+          "fg": "mid", 
+          "idle": "mid", 
           "touch": "c1", 
           "boost": "c1"
         }, 
+        "gtcoop": {
+          "bg": "", 
+          "fg": "mid", 
+          "idle": "mid", 
+          "touch": "c1", 
+          "boost": "all"
+        }, 
         "gtmain": {
           "bg": "", 
-          "fg": "all", 
-          "idle": "c0", 
-          "touch": "c2", 
-          "boost": "c2"
+          "fg": "mid", 
+          "idle": "mid", 
+          "touch": "c1", 
+          "boost": "all"
         }
       }, 
       "prio": {
@@ -179,23 +184,23 @@
         "norm": {
           "bg": -1, 
           "fg": -1, 
-          "idle": 120, 
+          "idle": 130, 
           "touch": 120, 
-          "boost": 130
+          "boost": 120
         }, 
         "coop": {
           "bg": -3, 
           "fg": 124, 
-          "idle": 122, 
+          "idle": 130, 
           "touch": 122, 
-          "boost": 130
+          "boost": 122
         }, 
         "ui": {
           "bg": -3, 
-          "fg": 120, 
-          "idle": 110, 
+          "fg": 116, 
+          "idle": 120, 
           "touch": 98, 
-          "boost": 116
+          "boost": 110
         }, 
         "rtusr": {
           "bg": 98, 
@@ -273,7 +278,7 @@
           "pinned": true, 
           "rules": [
             {
-              "k": "^(TaskSnapshot|Greezer|CachedApp|SystemPressure|SensorService)|[Mm]emory", 
+              "k": "^(TaskSnapshot|SensorService)", 
               "ac": "bg", 
               "pc": "auto"
             }, 
@@ -295,7 +300,7 @@
           "pinned": true, 
           "rules": [
             {
-              "k": "^(Jit thread pool|HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "k": "^(Jit thread pool)", 
               "ac": "bg", 
               "pc": "auto"
             }, 
@@ -309,18 +314,6 @@
         {
           "name": "MediaProvider", 
           "regex": "^com.android.providers.media", 
-          "pinned": true, 
-          "rules": [
-            {
-              "k": ".", 
-              "ac": "auto", 
-              "pc": "bg"
-            }
-          ]
-        }, 
-        {
-          "name": "Memory reclaim", 
-          "regex": "swapd|compactd", 
           "pinned": true, 
           "rules": [
             {
@@ -360,7 +353,7 @@
           "pinned": false, 
           "rules": [
             {
-              "k": "^(Jit thread pool|HeapTaskDaemon|FinalizerDaemon|ReferenceQueueD)", 
+              "k": "^(Jit thread pool)", 
               "ac": "bg", 
               "pc": "auto"
             }
@@ -452,9 +445,6 @@
       "limitEfficiency": false
     }, 
     "sysfs": {
-      "govMain1": "schedutil", 
-      "govMain2": "schedutil", 
-      "govMain3": "schedutil", 
       "cpusetTa": "0-7", 
       "cpusetFg": "0-5", 
       "cpusetBg": "0-3", 

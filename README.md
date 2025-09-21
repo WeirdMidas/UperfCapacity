@@ -33,11 +33,11 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - 不依赖于Magisk，可以手动方式安装
 - Fix some known issues and bugs in the Android environment, such as what happens on social networks where audios bug, go silent, etc.
 - sfopt optimizations will not impact SElinux, keeping it in "enforcing".
-- Use current mechanisms to manage subsystems such as Bluetooth audio and offload. This significantly reduces energy consumption when listening to music, using Bluetooth, and other features we use daily. This minimizes the impact on the user experience and significantly improves it.
+- Use current functions to manage subsystems such as Bluetooth and audio more efficiently, reducing the energy consumption of these aspects by considerable levels.
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
-- Change the original Uperf scheduling approach to something more similar to EAS with CASS core selection. Basically, tasks start on small cores (UI/Normal) and schedule between cores using the baseline energy model, favoring the highest decision-making based on energy savings. Also implementing strategies like ADPF, where game cooperation threads are placed on small cores, while the main game threads are placed on large cores, allowing for energy savings in games while significantly reducing resource contention due to overload on large cores, favoring greater stability.
-- Improve memory management by giving correct priorities and affinities to memory recycling and various cleaning threads, allowing overall memory management to be much better compared to before.
+- SOCs with prime cores, avoid using prime cores in an unbridled manner, use LITTLE and big cores instead of prime cores in conventional situations, making the uperf more efficient and with more efficient decision making.
+- Don't touch memory management threads or anything related to memory or I/O, just CPU, GPU, and Scheduler. Leave this work to the SkyScene Add-on, separating responsibilities between modules more efficiently.
 - Choose the best render based on compatibility. This allows the user's GPU to be used to its fullest potential by using a render that best suits their needs.
 - Improve the stability of the display refresh rate for energy efficiency and to avoid variations that may be perceived by the user.
 - Develop "Golden SOCs", which are a way to signal that an Uperf-compatible SOC has a "perfect" power model (perfectly balanced between efficiency and performance simultaneously).

@@ -27,6 +27,7 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - 监听唤醒锁更新操作，识别屏幕是否熄灭
 - Replace sfanalysis with sfopt, a way to optimize surfaceflinger directly without using a hook, considerably reducing power consumption and display refresh rate interruptions.
 - Use core_ctl as our main form of CPU hotplug, now integrated with Uperf, corectl becomes our greatest weapon in selecting active and idle cores.
+- Pack background tasks onto as few small cores as possible. Mimic WALT and PELT scheduling techniques that allow Uperf to pack as many latency-insensitive tasks as possible onto two or three small cores, avoiding activating more cores and improving energy consumption by maximizing cache locality for these "weak" tasks.
 - 支持Android 6.0 - 15
 - 支持arm64-v8a
 - 支持Magisk方式一键安装，版本不低于20.4+
@@ -36,6 +37,7 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Use current functions to manage subsystems such as Bluetooth and audio more efficiently, reducing the energy consumption of these aspects by considerable levels.
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
+- Follow different strategies depending on the SOC architecture. Big.LITTLE SOCs specialize in cache locality and decision-making, while DynamlQ SOCs specialize in scheduler freedom, allowing Uperf to maximize scheduling capabilities for this type of architecture. This allows for improved performance and efficiency across various SOCs thanks to implemented strategies that respect their characteristics.
 - SOCs with prime cores, avoid using prime cores in an unbridled manner, use LITTLE and big cores instead of prime cores in conventional situations, making the uperf more efficient and with more efficient decision making.
 - Don't touch memory management threads or anything related to memory or I/O, just CPU, GPU, and Scheduler. Leave this work to the SkyScene Add-on, separating responsibilities between modules more efficiently.
 - Choose the best render based on compatibility. This allows the user's GPU to be used to its fullest potential by using a render that best suits their needs.

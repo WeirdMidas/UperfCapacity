@@ -22,3 +22,12 @@ if [ -f "$MODDIR/flag/need_recuser" ]; then
 else
     true >$MODDIR/flag/need_recuser
 fi
+
+# Vulkan Enabler
+if [ -f "/system/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml" ] && [[ $(getprop ro.build.version.sdk) -ge 33 ]]; then
+    resetprop debug.hwui.renderer skiavk
+    resetprop debug.renderengine.backend skiavkthreaded
+else
+    resetprop debug.hwui.renderer skiagl
+    resetprop debug.renderengine.backend skiaglthreaded
+fi

@@ -15,16 +15,6 @@ debug.graphics.game_default_frame_rate.disabled=true
 # Ping perf to issue cpu hints when rendering is slow
 vendor.display.perf_hint_window=50
 
-# Use the Bluetooth Battery Profile Service to dynamically reduce Bluetooth power consumption as needed to save battery power
-bluetooth.profile.bas.client.enabled=true
-
-# Use leaudio to significantly save battery power when using Bluetooth audio, such as headphones, etc
-persist.bluetooth.leaudio.allow.multiple.context=false
-persist.bluetooth.leaudio_offload.disabled=false
-persist.bluetooth.a2dp_offload.disabled=false
-ro.bluetooth.leaudio_offload.supported=true
-ro.bluetooth.a2dp_offload.supported=true
-
 # Fix certain bugs that occur in social media/messenger apps when audio is cut
 vendor.audio.feature.compr_voip.enable=true
 use.voice.path.for.pcm.voip=true

@@ -3,6 +3,7 @@
 - Removed compatibility with 32-bit SOCs, we will focus only on 64-bit devices, to bring maximum performance and efficiency to modern devices.
 - Given Uperf more control over performance demands, with the ability to control frame rate, camera performance, and various other settings that provided Uperf with greater control.
 - Integrate the new type of compatible SOC, the "Golden SOCs" to showcase their level of optimization.
+- Removed compatibility with old/32-bit like processors.
 
 [Current Compatibility]
 
@@ -10,7 +11,7 @@ New:
 sdm680/sdm685
 
 All:   
-Snapdragon 625/626/660/636/82x/835, 662/665/675/680/685/710/712/730/730g/750g/765/765g/768g/780/778g/778g+, 845/855/855+/860/865/865+/870/888/888+/8gen1/8gen1+
+Snapdragon 660/662/665/675/680/685/695, 710/712/730/730g/750g/765/765g/768g/780/778g/778g+, 835/845/855/855+/860/865/865+/870/888/888+/8gen1/8gen1+
 
 Helio P35/G35/G37/P65/G70/G80/G85/G90T, 700/720/800/810/820/900/920/8000/8100, 1000/1000l/1000+/1100/1200/9000
 

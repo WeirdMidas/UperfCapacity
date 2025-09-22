@@ -23,11 +23,18 @@ else
     true >$MODDIR/flag/need_recuser
 fi
 
-# Vulkan Enabler
+# Select the best Render as per device compatibility
 if [ -f "/system/vendor/etc/permissions/android.hardware.vulkan.version-1_3.xml" ] && [[ $(getprop ro.build.version.sdk) -ge 33 ]]; then
-    resetprop debug.hwui.renderer skiavk
-    resetprop debug.renderengine.backend skiavkthreaded
+    resetprop ro.hwui.use_vulkan true
 else
     resetprop debug.hwui.renderer skiagl
     resetprop debug.renderengine.backend skiaglthreaded
 fi
+
+# I think this stands for Sunlight Reading Enhancement? Displayfeature constantly polls the light sensor (in fact, too frequently) when this feature is enabled. This is bad for us because citsensorservice calculates compensation for our under-display light sensor that involves HWC and consumes CPU. Frequent nonstop sensor reads caused citsensorservice usage to shoot up to 100% at times:
+[ -n "$(getprop ro.vendor.sre.enable)" ] && resetprop --delete ro.vendor.sre.enable
+
+# Use AOSP default Codec2/OMX ranks
+[ -n "$(getprop debug.stagefright.omx_default_rank.sw-audio)" ] && resetprop --delete debug.stagefright.omx_default_rank.sw-audio
+[ -n "$(getprop debug.stagefright.omx_default_rank)" ] && resetprop --delete debug.stagefright.omx_default_rank
+[ -n "$(getprop debug.stagefright.ccodec)" ] && resetprop --delete debug.stagefright.ccodec

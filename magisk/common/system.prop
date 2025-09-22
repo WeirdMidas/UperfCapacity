@@ -17,4 +17,17 @@ vendor.display.perf_hint_window=50
 
 # Fix certain bugs that occur in social media/messenger apps when audio is cut
 vendor.audio.feature.compr_voip.enable=true
-use.voice.path.for.pcm.voip=true
+use.voice.path.for.pcm.voip=true 
+
+# Tone down CamX and CHIUSECASE logging
+persist.vendor.camera.logInfoMask=false
+
+# We will be using Codec2, which will mean we will have to use the vendor's encoders to reduce flickering
+debug.stagefright.c2inputsurface=-1
+media.settings.xml=/vendor/etc/media_profiles_vendor.xml
+debug.media.codec2=2
+vendor.media.omx=0
+
+# Silence Codec2 spammy logs
+persist.log.tag.QC2Buf=W
+persist.log.tag.QC2V4l2Codec=E

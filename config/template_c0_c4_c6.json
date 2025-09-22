@@ -188,23 +188,23 @@
         "norm": {
           "bg": -1, 
           "fg": -1, 
-          "idle": 130, 
+          "idle": 120, 
           "touch": 120, 
-          "boost": 120
+          "boost": 130
         }, 
         "coop": {
           "bg": -3, 
           "fg": 124, 
-          "idle": 130, 
+          "idle": 122, 
           "touch": 122, 
-          "boost": 122
+          "boost": 130
         }, 
         "ui": {
           "bg": -3, 
-          "fg": 116, 
-          "idle": 120, 
+          "fg": 120, 
+          "idle": 110, 
           "touch": 98, 
-          "boost": 110
+          "boost": 116
         }, 
         "rtusr": {
           "bg": 98, 
@@ -306,7 +306,7 @@
             {
               "k": "^(Jit thread pool)", 
               "ac": "bg", 
-              "pc": "auto"
+              "pc": "coop"
             }, 
             {
               "k": ".", 
@@ -359,7 +359,7 @@
             {
               "k": "^(Jit thread pool)", 
               "ac": "bg", 
-              "pc": "auto"
+              "pc": "coop"
             }
           ]
         }, 

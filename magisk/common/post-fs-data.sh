@@ -31,6 +31,11 @@ else
     resetprop debug.renderengine.backend skiaglthreaded
 fi
 
+# We should implement these display settings as per compatibility to reduce jank and annoying slowdowns
+if [ $(getprop ro.build.version.release) -ge 13 ]; then
+    resetprop debug.sf.auto_latch_unsignaled true
+fi
+
 # I think this stands for Sunlight Reading Enhancement? Displayfeature constantly polls the light sensor (in fact, too frequently) when this feature is enabled. This is bad for us because citsensorservice calculates compensation for our under-display light sensor that involves HWC and consumes CPU. Frequent nonstop sensor reads caused citsensorservice usage to shoot up to 100% at times:
 [ -n "$(getprop ro.vendor.sre.enable)" ] && resetprop --delete ro.vendor.sre.enable
 

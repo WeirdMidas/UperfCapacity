@@ -16,6 +16,13 @@
 #
 
 ###############################
+# Abbreviations
+###############################
+
+SCHED="/proc/sys/kernel"
+DEBUG=" /sys/kernel/debug"
+
+###############################
 # Powermodes helper functions
 ###############################
 
@@ -56,8 +63,6 @@ set_governor_param() {
         key=${kv%:*}
         val=${kv#*:}
         lock_val "$val" /sys/devices/system/cpu/cpu$key/cpufreq/$1
-        # sdm625 hmp
-        lock_val "$val" /sys/devices/system/cpu/cpufreq/$1
     done
 }
 
@@ -70,6 +75,63 @@ set_corectl_param() {
         val=${kv#*:}
         lock_val "$val" /sys/devices/system/cpu/cpu$key/core_ctl/$1
     done
+}
+
+# $1:upmigrate $2:downmigrate $3:group_upmigrate $4:group_downmigrate
+set_sched_migrate() {
+    mutate "$2" $SCHED/sched_downmigrate
+    mutate "$1" $SCHED/sched_upmigrate
+    mutate "$2" $SCHED/sched_downmigrate
+    mutate "$4" $SCHED/sched_group_downmigrate
+    mutate "$3" $SCHED/sched_group_upmigrate
+    mutate "$4" $SCHED/sched_group_downmigrate
+}
+
+# $1:latency $2:min_granu $3:wakeup $4:nr_migrate $5:tunable_scaling
+set_task_scheduler_param() {
+    if [ -f $SCHED/sched_tunable_scaling ]; then
+        mutate "$1" $SCHED/sched_latency_ns
+        mutate "$2" $SCHED/sched_min_granularity_ns
+        mutate "$3" $SCHED/sched_wakeup_granularity_ns
+        mutate "$4" $SCHED/sched_nr_migrate
+        mutate "$5" $SCHED/sched_tunable_scaling
+    else
+        mount -t debugfs debugfs /sys/kernel/debug
+        mutate "$1" $DEBUG/sched/tunable_scaling
+        mutate "$2" $DEBUG/sched/min_granularity_ns
+        mutate "$3" $DEBUG/sched/wakeup_granularity_ns
+        mutate "$4" $DEBUG/sched/nr_migrate
+        mutate "$5" $DEBUG/sched/tunable_scaling
+        umount /sys/kernel/debug
+    fi
+}
+
+# $1:migrate_cost
+set_task_migration_cost() {
+    if [ -f $SCHED/sched_migration_cost_ns ]; then
+        mutate "$1" $SCHED/sched_migration_cost_ns
+    else
+        mount -t debugfs debugfs /sys/kernel/debug
+        mutate "$1" $DEBUG/sched/migration_cost_ns
+        umount /sys/kernel/debug
+    fi
+}
+
+# $1:flag $2: flag
+set_task_scheduler_flags() {
+    if [ -f $SCHED/sched_tunable_scaling ]; then
+        mount -t debugfs debugfs /sys/kernel/debug
+        mutate "$1" $DEBUG/sched_features
+        mutate "$2" $DEBUG/sched_features
+        mutate "$3" $DEBUG/sched_features
+        umount /sys/kernel/debug
+    else
+        mount -t debugfs debugfs /sys/kernel/debug
+        mutate "$1" $DEBUG/sched/features
+        mutate "$2" $DEBUG/sched/features
+        mutate "$3" $DEBUG/sched/features
+        umount /sys/kernel/debug
+    fi
 }
 
 # stop before updating cfg

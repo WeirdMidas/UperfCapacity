@@ -26,9 +26,10 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - 监听cpuset分组更新操作，识别正在操作的APP发生切换
 - 监听唤醒锁更新操作，识别屏幕是否熄灭
 - Replace sfanalysis with sfopt, a way to optimize surfaceflinger directly without using a hook, considerably reducing power consumption and display refresh rate interruptions.
-- Use core_ctl as our main form of CPU hotplug, now integrated with Uperf, corectl becomes our greatest weapon in selecting active and idle cores.
+- Use core_ctl as our main form of CPU hotplug, now integrated with Uperf, corectl becomes our greatest weapon in selecting active and idle cores. And dynamically control how many cores are active through Uperf, allowing the need for cores to be more controlled, reducing overall consumption at idle and allowing the device to not be affected during activity.
 - Unlike Matt Yang's version, the current version will utilize hotplugs, causing cores to idle quickly, and avoiding using more cores than necessary based on demand. We'll be looking for a more efficient, faster, and more specialized way to balance CPU usage based on actual demand. This allows Uperf to use much less CPU and cause much less throttling compared to its standard versions, drastically reducing the inefficiency of the original Uperf and significantly increasing its stability and efficiency.
 - Pack background tasks onto as few small cores as possible. Mimic WALT and PELT scheduling techniques that allow Uperf to pack as many latency-insensitive tasks as possible onto two or three small cores, avoiding activating more cores and improving energy consumption by maximizing cache locality for these "weak" tasks.
+- Abruptly reduce throttling by using slowpowerlimit and fastpowerlimit, consistent with the power consumption of the SOC's TDP and the performance profile used. This allows Uperf to use the device's power more efficiently, unifying our power model, frequency model, hotplugging, and faster idle time strategies.
 - 支持Android 6.0 - 15
 - 支持arm64-v8a
 - Heavily modified ROMs may not be fully compatible with Uperf due to the way it prefers AOSP things, be aware of possible bugs if you are on one of these ROMs.
@@ -37,6 +38,7 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Fix some known issues and bugs in the Android environment, such as what happens on social networks where audios bug, go silent, etc.
 - sfopt optimizations will not impact SElinux, keeping it in "enforcing".
 - Follow the AOSP audio model, the famous Codec2, to reduce media power consumption and improve stability when using modern features built into Android.
+- Use modern improvements and optimizations to reduce jank and display instability, allowing modern devices to use modern technologies to improve performance and efficiency of rendering and other more important areas.
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
 - Follow different strategies depending on the SOC architecture. Big.LITTLE SOCs specialize in cache locality and decision-making, while DynamlQ SOCs specialize in scheduler freedom, allowing Uperf to maximize scheduling capabilities for this type of architecture. This allows for improved performance and efficiency across various SOCs thanks to implemented strategies that respect their characteristics.
@@ -44,7 +46,6 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Don't touch memory management threads or anything related to memory or I/O, just CPU, GPU, and Scheduler. Leave this work to the SkyScene Add-on, separating responsibilities between modules more efficiently.
 - Depending on device compatibility, use SkiaHWUI+SkiaThreaded for older devices and Vulkan for modern devices. This allows the GPU to be fully utilized for graphics performance.
 - Improve the stability of the display refresh rate for energy efficiency and to avoid variations that may be perceived by the user.
-- Develop "Golden SOCs", which are a way to signal that an Uperf-compatible SOC has a "perfect" power model (perfectly balanced between efficiency and performance simultaneously).
 
 ## 下载
 

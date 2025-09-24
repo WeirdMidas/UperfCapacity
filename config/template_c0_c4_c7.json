@@ -77,6 +77,7 @@
         "minPrimeCpus": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus", 
         "cpusetTa": "/dev/cpuset/top-app/cpus", 
         "cpusetFg": "/dev/cpuset/foreground/cpus", 
+        "cpusetFgW": "/dev/cpuset/foreground_window/cpus", 
         "cpusetBg": "/dev/cpuset/background/cpus", 
         "cpusetSysBg": "/dev/cpuset/system-background/cpus", 
         "cpusetRe": "/dev/cpuset/restricted/cpus"
@@ -458,6 +459,7 @@
       "minPrimeCpus": "0", 
       "cpusetTa": "0-7", 
       "cpusetFg": "0-6", 
+      "cpusetFgW": "0-6", 
       "cpusetBg": "0-3", 
       "cpusetSysBg": "0-3", 
       "cpusetRe": "0-3"
@@ -496,11 +498,13 @@
         "sched.scene": "touch"
       }, 
       "gesture": {
+        "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.4, 
         "sched.scene": "touch"
       }, 
       "junk": {
         "cpu.burst": 0.7, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {
@@ -540,11 +544,13 @@
         "sched.scene": "touch"
       }, 
       "gesture": {
+        "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.4, 
         "sched.scene": "touch"
       }, 
       "junk": {
         "cpu.burst": 0.6, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {
@@ -588,6 +594,7 @@
       }, 
       "junk": {
         "cpu.burst": 0.7, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {
@@ -629,6 +636,7 @@
       }, 
       "junk": {
         "cpu.burst": 0.7, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {

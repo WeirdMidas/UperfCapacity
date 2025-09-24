@@ -474,11 +474,13 @@
         "sched.scene": "touch"
       }, 
       "gesture": {
+        "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.4,  
         "sched.scene": "touch"
       }, 
       "junk": {
         "cpu.burst": 0.7, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {
@@ -518,11 +520,13 @@
         "sched.scene": "touch"
       }, 
       "gesture": {
+        "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.4, 
         "sched.scene": "touch"
       }, 
       "junk": {
         "cpu.burst": 0.6, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {
@@ -564,6 +568,7 @@
       }, 
       "junk": {
         "cpu.burst": 0.7, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {
@@ -603,6 +608,7 @@
       }, 
       "junk": {
         "cpu.burst": 0.7, 
+        "cpu.margin": 0.5, 
         "sched.scene": "touch"
       }, 
       "switch": {

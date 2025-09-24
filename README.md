@@ -34,12 +34,15 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - 支持Android 6.0 - 15
 - 支持arm64-v8a
 - Heavily modified ROMs may not be fully compatible with Uperf due to the way it prefers AOSP things, be aware of possible bugs if you are on one of these ROMs.
+- Reduce Uperf's latency as much as possible by reducing as much as possible the kernel heuristics that go against the way Uperf schedules tasks, allowing Uperf to fight less with the Kernel and the Kernel to cooperate more with Uperf, slightly improving Uperf's latency and consistency.
+- Improve the way Uperf handles Jank situations, reducing situations where Uperf needs to go beyond what it is capable of to handle Jank, improving the consistency of the device drastically.
 - 支持Magisk方式一键安装，版本不低于20.4+
 - 不依赖于Magisk，可以手动方式安装
 - Fix some known issues and bugs in the Android environment, such as what happens on social networks where audios bug, go silent, etc.
 - sfopt optimizations will not impact SElinux, keeping it in "enforcing".
 - Follow the AOSP audio model, the famous Codec2, to reduce media power consumption and improve stability when using modern features built into Android.
 - Use modern improvements and optimizations to reduce jank and display instability, allowing modern devices to use modern technologies to improve performance and efficiency of rendering and other more important areas.
+- Focus on the user experience, reducing small moments of annoying slowdowns such as scrolling on social networks, texts full of embellishments, etc. Allowing Uperf to always be ready to handle the user experience.
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
 - Follow different strategies depending on the SOC architecture. Big.LITTLE SOCs specialize in cache locality and decision-making, while DynamlQ SOCs specialize in scheduler freedom, allowing Uperf to maximize scheduling capabilities for this type of architecture. This allows for improved performance and efficiency across various SOCs thanks to implemented strategies that respect their characteristics.

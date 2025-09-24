@@ -557,7 +557,6 @@
         "cpu.fastLimitCapacity": 0.0, 
         "cpu.margin": 0.3, 
         "sysfs.minLittleCpus": 6, 
-        "sysfs.minBigCpus": 2, 
         "sysfs.minPrimeCpus": 1
       }, 
       "idle": {
@@ -566,7 +565,6 @@
         "cpu.slowLimitPower": 0.0, 
         "cpu.margin": 0.2, 
         "sched.scene": "idle", 
-        "sysfs.minBigCpus": 1, 
         "sysfs.minLittleCpus": 4,
         "sysfs.minPrimeCpus": 0 
       }, 
@@ -600,7 +598,6 @@
         "cpu.fastLimitCapacity": 0.0, 
         "cpu.margin": 0.3, 
         "sysfs.minLittleCpus": 6, 
-        "sysfs.minBigCpus": 2, 
         "sysfs.minPrimeCpus": 1
       }, 
       "idle": {
@@ -610,7 +607,6 @@
         "cpu.margin": 0.2, 
         "sched.scene": "idle", 
         "sysfs.minLittleCpus": 4, 
-        "sysfs.minBigCpus": 1, 
         "sysfs.minPrimeCpus": 0
       }, 
       "touch": {

@@ -505,6 +505,7 @@
       }, 
       "switch": {
         "cpu.latencyTime": 0.0, 
+        "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitRecoverScale": 0.1, 
         "cpu.margin": 0.4, 
         "sched.scene": "boost"
@@ -548,6 +549,7 @@
       }, 
       "switch": {
         "cpu.latencyTime": 0.0, 
+        "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitRecoverScale": 0.1, 
         "cpu.margin": 0.4, 
         "sched.scene": "boost"

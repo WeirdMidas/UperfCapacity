@@ -483,6 +483,7 @@
       }, 
       "switch": {
         "cpu.latencyTime": 0.0, 
+        "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitRecoverScale": 0.1, 
         "cpu.margin": 0.4, 
         "sched.scene": "boost"
@@ -526,8 +527,7 @@
       }, 
       "switch": {
         "cpu.latencyTime": 0.0, 
-        "cpu.slowLimitPower": 1.5, 
-        "cpu.fastLimitPower": 2.5, 
+        "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitRecoverScale": 0.1, 
         "cpu.margin": 0.4, 
         "sched.scene": "boost"
@@ -575,8 +575,8 @@
     "fast": {
       "*": {
         "cpu.latencyTime": 0.0, 
-        "cpu.slowLimitPower": 2.5, 
-        "cpu.fastLimitPower": 2.5, 
+        "cpu.slowLimitPower": 0.0, 
+        "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitCapacity": 0.0, 
         "cpu.margin": 0.3, 
         "sysfs.minBigCpus": 4

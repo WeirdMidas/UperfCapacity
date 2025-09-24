@@ -18,6 +18,13 @@
 # Runonce after boot, to speed up the transition of power modes in powercfg
 
 apply_once() {
+    # It's easier to respect the limits of LITTLE cores for task migration LITTLE cores can typically handle up to 80% of tasks placed on them Big cores can handle up to 2.4x more tasks than little cores, showing that the difference between the two is almost drastic
+    set_sched_migrate "80" "60" "90" "75"
+    
+    # Typically, a migration time of 1ms is sufficient in current environments
+    set_task_migration_cost "1000000"
+    
+    # This is the ideal Corectl configuration based on the architecture and your demand and efficiency needs
     set_corectl_param "enable" "0:1 6:1"
     set_corectl_param "busy_down_thres" "0:20 6:40"
     set_corectl_param "busy_up_thres" "0:40 6:70"

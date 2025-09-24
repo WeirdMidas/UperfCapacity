@@ -29,7 +29,8 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Use core_ctl as our main form of CPU hotplug, now integrated with Uperf, corectl becomes our greatest weapon in selecting active and idle cores. And dynamically control how many cores are active through Uperf, allowing the need for cores to be more controlled, reducing overall consumption at idle and allowing the device to not be affected during activity.
 - Unlike Matt Yang's version, the current version will utilize hotplugs, causing cores to idle quickly, and avoiding using more cores than necessary based on demand. We'll be looking for a more efficient, faster, and more specialized way to balance CPU usage based on actual demand. This allows Uperf to use much less CPU and cause much less throttling compared to its standard versions, drastically reducing the inefficiency of the original Uperf and significantly increasing its stability and efficiency.
 - Pack background tasks onto as few small cores as possible. Mimic WALT and PELT scheduling techniques that allow Uperf to pack as many latency-insensitive tasks as possible onto two or three small cores, avoiding activating more cores and improving energy consumption by maximizing cache locality for these "weak" tasks.
-- Abruptly reduce throttling by using slowpowerlimit and fastpowerlimit, consistent with the power consumption of the SOC's TDP and the performance profile used. This allows Uperf to use the device's power more efficiently, unifying our power model, frequency model, hotplugging, and faster idle time strategies.
+- Use PL1 (slowpowerlimit), PL2 (fastpowerlimit) and TEO (fastpowercapacity) that respect the energy requirements of each compatible SOC, allowing Uperf to extract the maximum possible raw power from the SOC according to demand and the profile used, reducing energy waste, improving cache hit accuracy and performance in demanding tasks and daily use tasks.
+- Respect the limits of LITTLE cores! Differentiate the need to use LITTLE cores compared to big/prime cores if demand truly requires it, avoiding overloading small cores and resulting in stalls due to LITTLE cores operating at their capacity, which borders on healthy.
 - 支持Android 6.0 - 15
 - 支持arm64-v8a
 - Heavily modified ROMs may not be fully compatible with Uperf due to the way it prefers AOSP things, be aware of possible bugs if you are on one of these ROMs.
@@ -46,6 +47,7 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Don't touch memory management threads or anything related to memory or I/O, just CPU, GPU, and Scheduler. Leave this work to the SkyScene Add-on, separating responsibilities between modules more efficiently.
 - Depending on device compatibility, use SkiaHWUI+SkiaThreaded for older devices and Vulkan for modern devices. This allows the GPU to be fully utilized for graphics performance.
 - Improve the stability of the display refresh rate for energy efficiency and to avoid variations that may be perceived by the user.
+- Develop "Golden SOCs", which are a way to signal that an Uperf-compatible SOC has a "perfect" power model (perfectly balanced between efficiency and performance simultaneously).
 
 ## 下载
 

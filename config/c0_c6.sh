@@ -19,7 +19,6 @@
 
 apply_once() {
     set_corectl_param "enable" "0:1 6:1"
-    set_corectl_param "min_cpus" "0:4 6:1"
     set_corectl_param "busy_down_thres" "0:20 6:40"
     set_corectl_param "busy_up_thres" "0:40 6:70"
     set_corectl_param "offline_delay_ms" "0:50 6:100"

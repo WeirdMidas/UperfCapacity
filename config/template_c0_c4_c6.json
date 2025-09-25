@@ -75,6 +75,7 @@
         "minLittleCpus": "/sys/devices/system/cpu/cpu0/core_ctl/min_cpus", 
         "minBigCpus": "/sys/devices/system/cpu/cpu4/core_ctl/min_cpus", 
         "minPrimeCpus": "/sys/devices/system/cpu/cpu6/core_ctl/min_cpus", 
+        "irqAffinity": "/proc/irq/default_smp_affinity", 
         "cpusetTa": "/dev/cpuset/top-app/cpus", 
         "cpusetFg": "/dev/cpuset/foreground/cpus", 
         "cpusetFgW": "/dev/cpuset/foreground_window/cpus", 
@@ -456,6 +457,7 @@
       "minLittleCpus": "4", 
       "minBigCpus": "2", 
       "minPrimeCpus": "0", 
+      "irqAffinity": "3f", 
       "cpusetTa": "0-7", 
       "cpusetFg": "0-5", 
       "cpusetFgW": "0-5", 
@@ -484,7 +486,8 @@
         "cpu.predictThd": 0.3, 
         "cpu.limitEfficiency": true, 
         "sched.scene": "idle", 
-        "sysfs.minBigCpus": 1
+        "sysfs.minBigCpus": 1, 
+        "sysfs.irqAffinity": "0f"
       }, 
       "touch": {
         "cpu.baseSampleTime": 0.04, 
@@ -530,7 +533,8 @@
         "cpu.predictThd": 1.0, 
         "cpu.limitEfficiency": true, 
         "sched.scene": "idle", 
-        "sysfs.minBigCpus": 1
+        "sysfs.minBigCpus": 1, 
+        "sysfs.irqAffinity": "0f"
       }, 
       "touch": {
         "cpu.baseSampleTime": 0.04, 
@@ -576,7 +580,8 @@
         "cpu.margin": 0.2, 
         "sched.scene": "idle", 
         "sysfs.minBigCpus": 1, 
-        "sysfs.minPrimeCpus": 0
+        "sysfs.minPrimeCpus": 0, 
+        "sysfs.irqAffinity": "0f"
       }, 
       "touch": {
         "cpu.margin": 0.6, 
@@ -617,7 +622,8 @@
         "cpu.margin": 0.2, 
         "sched.scene": "idle", 
         "sysfs.minBigCpus": 1, 
-        "sysfs.minPrimeCpus": 0
+        "sysfs.minPrimeCpus": 0, 
+        "sysfs.irqAffinity": "0f"
       }, 
       "touch": {
         "cpu.margin": 0.6, 

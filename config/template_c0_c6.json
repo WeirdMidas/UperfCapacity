@@ -62,6 +62,7 @@
       "knob": {
         "minLittleCpus": "/sys/devices/system/cpu/cpu0/core_ctl/min_cpus", 
         "minBigCpus": "/sys/devices/system/cpu/cpu6/core_ctl/min_cpus", 
+        "irqAffinity": "/proc/irq/default_smp_affinity", 
         "cpusetTa": "/dev/cpuset/top-app/cpus", 
         "cpusetFg": "/dev/cpuset/foreground/cpus", 
         "cpusetBg": "/dev/cpuset/background/cpus", 
@@ -431,6 +432,7 @@
     "sysfs": {
       "minLittleCpus": "4", 
       "minBigCpus": "1", 
+      "irqAffinity": "3f", 
       "cpusetTa": "0-7", 
       "cpusetFg": "0-7", 
       "cpusetBg": "0-3", 

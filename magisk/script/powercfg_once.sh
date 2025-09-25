@@ -55,11 +55,12 @@ unify_sched() {
 
     for d in kernel walt; do
         mask_val "0" /proc/sys/$d/sched_force_lb_enable
+        mutate "0" /proc/sys/$d/sched_lib_mask_force
     done
     
-    # Reason to disable RT_RUNTIME_SHARE: https://github.com/kerneltoast/android_kernel_google_gs201/commit/2586af1ac187f6b3a50930a4e33497074e81762d
-    # Reason to disable LB_BIAS: https://github.com/kerneltoast/android_kernel_google_gs201/commit/fdf5f315d5cfaefb7bb8a62ec4bf37b9891837aa
-    # Reason to disable TTWU_QUEUE: https://github.com/kerneltoast/android_kernel_google_gs201/commit/412f1212c5543b154bf24ff7e9941a067df8715a
+    # reason to disable RT_RUNTIME_SHARE: https://github.com/kerneltoast/android_kernel_google_gs201/commit/2586af1ac187f6b3a50930a4e33497074e81762d
+    # reason to disable LB_BIAS: https://github.com/kerneltoast/android_kernel_google_gs201/commit/fdf5f315d5cfaefb7bb8a62ec4bf37b9891837aa
+    # reason to disable TTWU_QUEUE: https://github.com/kerneltoast/android_kernel_google_gs201/commit/412f1212c5543b154bf24ff7e9941a067df8715a
     set_task_scheduler_flags "NO_RT_RUNTIME_SHARE" "NO_LB_BIAS" "NO_TTWU_QUEUE"
 }
 
@@ -250,3 +251,11 @@ unify_lpm
 # make sure that all the related cpu is online
 rebuild_process_scan_cache
 unify_cgroup
+
+# after boot, switch to rcu_normal for greater energy efficiency with synchronization
+while [ "$(getprop sys.boot_completed)" != "1" ]; do
+    sleep 1
+done
+
+lock_val "0" /sys/kernel/rcu_expedited
+lock_val "1" /sys/kernel/rcu_normal

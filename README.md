@@ -31,7 +31,9 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Pack background tasks onto as few small cores as possible. Mimic WALT and PELT scheduling techniques that allow Uperf to pack as many latency-insensitive tasks as possible onto two or three small cores, avoiding activating more cores and improving energy consumption by maximizing cache locality for these "weak" tasks.
 - Use PL1 (slowpowerlimit), PL2 (fastpowerlimit) and TEO (fastpowercapacity) that respect the energy requirements of each compatible SOC, allowing Uperf to extract the maximum possible raw power from the SOC according to demand and the profile used, reducing energy waste, improving cache hit accuracy and performance in demanding tasks and daily use tasks.
 - Respect the limits of LITTLE cores! Differentiate the need to use LITTLE cores compared to big/prime cores if demand truly requires it, avoiding overloading small cores and resulting in stalls due to LITTLE cores operating at their capacity, which borders on healthy.
-- 支持Android 6.0 - 15
+- After full boot, switch to rcu_normal, allowing accelerated synchronization (rcu_expedited) to be used only when necessary (before full boot). This overall allows the device to use a more efficient and beneficial rcu for each "lifecycle" of the device.
+- Depending on the system state, IRQ interrupts can stay on the small cores in idle, and in activity, they can use all cores (except the prime), improving load balancing for energy efficiency at considerable levels.
+- 支持Android 8 - 15
 - 支持arm64-v8a
 - Heavily modified ROMs may not be fully compatible with Uperf due to the way it prefers AOSP things, be aware of possible bugs if you are on one of these ROMs.
 - Reduce Uperf's latency as much as possible by reducing as much as possible the kernel heuristics that go against the way Uperf schedules tasks, allowing Uperf to fight less with the Kernel and the Kernel to cooperate more with Uperf, slightly improving Uperf's latency and consistency.
@@ -43,6 +45,7 @@ Details see [the lead project](https://github.com/WeirdMidas/UperfCapacity/commi
 - Follow the AOSP audio model, the famous Codec2, to reduce media power consumption and improve stability when using modern features built into Android.
 - Use modern improvements and optimizations to reduce jank and display instability, allowing modern devices to use modern technologies to improve performance and efficiency of rendering and other more important areas.
 - Focus on the user experience, reducing small moments of annoying slowdowns such as scrolling on social networks, texts full of embellishments, etc. Allowing Uperf to always be ready to handle the user experience.
+- Reduce speaker power consumption by using offload technology. Use optimizations that enhance this technology to reduce power consumption when listening to music or watching videos, significantly improving the user experience.
 - 不依赖于任何Android应用层框架以及第三方内核
 - 为大多数热门硬件平台提供了调参后的配置文件
 - Follow different strategies depending on the SOC architecture. Big.LITTLE SOCs specialize in cache locality and decision-making, while DynamlQ SOCs specialize in scheduler freedom, allowing Uperf to maximize scheduling capabilities for this type of architecture. This allows for improved performance and efficiency across various SOCs thanks to implemented strategies that respect their characteristics.

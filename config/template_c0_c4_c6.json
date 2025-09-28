@@ -497,6 +497,7 @@
       "trigger": {
         "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.5, 
+        "cpu.fastLimitCapacity": 0.0, 
         "sched.scene": "touch"
       }, 
       "gesture": {
@@ -544,6 +545,7 @@
       "trigger": {
         "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.5, 
+        "cpu.fastLimitCapacity": 0.0, 
         "sched.scene": "touch"
       }, 
       "gesture": {
@@ -589,6 +591,7 @@
       }, 
       "trigger": {
         "cpu.margin": 0.5, 
+        "cpu.fastLimitCapacity": 0.0, 
         "sched.scene": "touch"
       }, 
       "gesture": {
@@ -618,12 +621,7 @@
       "idle": {
         "cpu.baseSampleTime": 0.01, 
         "cpu.baseSlackTime": 0.04, 
-        "cpu.slowLimitPower": 0.0, 
-        "cpu.margin": 0.2, 
-        "sched.scene": "idle", 
-        "sysfs.minBigCpus": 1, 
-        "sysfs.minPrimeCpus": 0, 
-        "sysfs.irqAffinity": "0f"
+        "sched.scene": "idle"
       }, 
       "touch": {
         "cpu.margin": 0.6, 

@@ -53,9 +53,13 @@ unify_sched() {
         lock_val "0" $d/cpu.uclamp.latency_sensitive
     done
 
+    # clean up heuristics that can hinder Uperf's decision-making
     for d in kernel walt; do
         mask_val "0" /proc/sys/$d/sched_force_lb_enable
         mutate "0" /proc/sys/$d/sched_lib_mask_force
+        mutate "0" /proc/sys/$d/sched_walt_rotate_big_tasks
+        mutate "0" /proc/sys/$d/sched_coloc_busy_hysteresis_enable_cpus
+        mutate "0" /proc/sys/$d/sched_coloc_downmigrate_ns
     done
     
     # reason to disable RT_RUNTIME_SHARE: https://github.com/kerneltoast/android_kernel_google_gs201/commit/2586af1ac187f6b3a50930a4e33497074e81762d

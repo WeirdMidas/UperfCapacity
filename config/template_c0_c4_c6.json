@@ -479,6 +479,7 @@
         "cpu.margin": 0.2
       }, 
       "idle": {
+        "cpu.latencyTime": 0.4, 
         "cpu.baseSampleTime": 0.04, 
         "cpu.baseSlackTime": 0.08, 
         "cpu.slowLimitPower": 0.0, 
@@ -527,6 +528,7 @@
         "cpu.margin": 0.3
       }, 
       "idle": {
+        "cpu.latencyTime": 0.6, 
         "cpu.baseSampleTime": 0.04, 
         "cpu.baseSlackTime": 0.08, 
         "cpu.slowLimitPower": 0.0, 
@@ -576,6 +578,7 @@
         "sysfs.minPrimeCpus": 2
       }, 
       "idle": {
+        "cpu.latencyTime": 0.2,  
         "cpu.baseSampleTime": 0.01, 
         "cpu.baseSlackTime": 0.04, 
         "cpu.slowLimitPower": 0.0, 

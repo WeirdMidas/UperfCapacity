@@ -499,6 +499,7 @@
       "trigger": {
         "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.5, 
+        "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitCapacity": 0.0, 
         "sched.scene": "touch"
       }, 
@@ -548,6 +549,7 @@
       "trigger": {
         "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.5,  
+        "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitCapacity": 0.0, 
         "sched.scene": "touch"
       }, 

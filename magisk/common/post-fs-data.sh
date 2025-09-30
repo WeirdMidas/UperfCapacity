@@ -36,6 +36,9 @@ if [ $(getprop ro.build.version.release) -ge 13 ]; then
     resetprop debug.sf.auto_latch_unsignaled true
 fi
 
+# Use ARM Frame Buffer on Mali GPUs
+[ "$(getprop ro.hardware.vulkan)" = "mali" ] && resetprop ro.vendor.ddk.set.afbc 1
+
 # I think this stands for Sunlight Reading Enhancement? Displayfeature constantly polls the light sensor (in fact, too frequently) when this feature is enabled. This is bad for us because citsensorservice calculates compensation for our under-display light sensor that involves HWC and consumes CPU. Frequent nonstop sensor reads caused citsensorservice usage to shoot up to 100% at times:
 [ -n "$(getprop ro.vendor.sre.enable)" ] && resetprop --delete ro.vendor.sre.enable
 

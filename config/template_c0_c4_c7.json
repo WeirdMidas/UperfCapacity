@@ -76,6 +76,8 @@
         "minBigCpus": "/sys/devices/system/cpu/cpu4/core_ctl/min_cpus", 
         "minPrimeCpus": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus", 
         "irqAffinity": "/proc/irq/default_smp_affinity", 
+        "rcuExpedited": "/sys/kernel/rcu_expedited", 
+        "rcuNormal": "/sys/kernel/rcu_normal", 
         "cpusetTa": "/dev/cpuset/top-app/cpus", 
         "cpusetFg": "/dev/cpuset/foreground/cpus", 
         "cpusetFgW": "/dev/cpuset/foreground_window/cpus", 
@@ -459,6 +461,8 @@
       "minBigCpus": "2", 
       "minPrimeCpus": "0", 
       "irqAffinity": "7f", 
+      "rcuExpedited": "0", 
+      "rcuNormal": "1", 
       "cpusetTa": "0-7", 
       "cpusetFg": "0-6", 
       "cpusetFgW": "0-6", 
@@ -501,23 +505,29 @@
         "cpu.margin": 0.5, 
         "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitCapacity": 0.0, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "touch"
       }, 
       "gesture": {
         "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.4, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "touch"
       }, 
       "junk": {
         "cpu.burst": 0.7, 
-        "cpu.margin": 0.5, 
+        "cpu.margin": 0.3, 
         "sched.scene": "touch"
       }, 
       "switch": {
         "cpu.latencyTime": 0.0, 
         "cpu.fastLimitPower": 0.0, 
-        "cpu.fastLimitRecoverScale": 0.1, 
+        "cpu.fastLimitCapacity": 0.0, 
         "cpu.margin": 0.4, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "boost"
       }
     }, 
@@ -551,23 +561,29 @@
         "cpu.margin": 0.5,  
         "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitCapacity": 0.0, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "touch"
       }, 
       "gesture": {
         "cpu.latencyTime": 0.0, 
         "cpu.margin": 0.4, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "touch"
       }, 
       "junk": {
         "cpu.burst": 0.6, 
-        "cpu.margin": 0.5, 
+        "cpu.margin": 0.4, 
         "sched.scene": "touch"
       }, 
       "switch": {
         "cpu.latencyTime": 0.0, 
         "cpu.fastLimitPower": 0.0, 
-        "cpu.fastLimitRecoverScale": 0.1, 
+        "cpu.fastLimitCapacity": 0.0, 
         "cpu.margin": 0.4, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "boost"
       }
     }, 
@@ -599,20 +615,27 @@
       "trigger": {
         "cpu.margin": 0.5,  
         "cpu.fastLimitCapacity": 0.0, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "touch"
       }, 
       "gesture": {
         "cpu.margin": 0.4, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "touch"
       }, 
       "junk": {
         "cpu.burst": 0.7, 
-        "cpu.margin": 0.5, 
+        "cpu.margin": 0.3, 
         "sched.scene": "touch"
       }, 
       "switch": {
         "cpu.burst": 0.2, 
         "cpu.margin": 0.4, 
+        "cpu.fastLimitCapacity": 0.0, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sched.scene": "boost"
       }
     }, 
@@ -623,6 +646,8 @@
         "cpu.fastLimitPower": 0.0, 
         "cpu.fastLimitCapacity": 0.0, 
         "cpu.margin": 0.3, 
+        "sysfs.rcuExpedited": 1, 
+        "sysfs.rcuNormal": 0,  
         "sysfs.minBigCpus": 3, 
         "sysfs.minPrimeCpus": 1
       }, 
@@ -645,7 +670,7 @@
       }, 
       "junk": {
         "cpu.burst": 0.7, 
-        "cpu.margin": 0.5, 
+        "cpu.margin": 0.3, 
         "sched.scene": "touch"
       }, 
       "switch": {

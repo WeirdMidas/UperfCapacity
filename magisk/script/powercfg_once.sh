@@ -70,8 +70,9 @@ unify_sched() {
 
 unify_devfreq() {
     for df in /sys/class/devfreq; do
-        for d in $df/*cpubw $df/*llccbw $df/*cpu-cpu-llcc-bw $df/*cpu-llcc-ddr-bw; do
+        for d in $df/*cpubw $df/*llccbw $df/*cpu-cpu-*-bw $df/*cpu-llcc-ddr-bw; do
             lock_val "9999000000" "$d/max_freq"
+            lock_val "bw_hwmon" "$d/governor"
         done
     done
     for d in DDR LLCC L3; do
@@ -255,11 +256,3 @@ unify_lpm
 # make sure that all the related cpu is online
 rebuild_process_scan_cache
 unify_cgroup
-
-# after boot, switch to rcu_normal for greater energy efficiency with synchronization
-while [ "$(getprop sys.boot_completed)" != "1" ]; do
-    sleep 1
-done
-
-lock_val "0" /sys/kernel/rcu_expedited
-lock_val "1" /sys/kernel/rcu_normal
